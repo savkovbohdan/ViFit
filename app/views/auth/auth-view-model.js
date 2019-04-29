@@ -8,7 +8,6 @@ require("nativescript-dom");
 var enums = require("tns-core-modules/ui/enums");
 var animations = require("../../js/animation-module");
 var api = require("../../js/api-firebase-module");
-
 function HomeViewModel() {
   var viewModel = observableModule.fromObject({
     state: 0,
