@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const createViewModel = require("./trainer-view-model").createViewModel;
+const HomeViewModel = require("./trainer-view-model");
 var frame_1 = require("tns-core-modules/ui/frame");
 require("nativescript-dom");
 var platform = require("tns-core-modules/platform");
@@ -8,9 +8,9 @@ var api = require("../../js/api-firebase-module");
 var page;
 function onNavigatingTo(args) {
     page = args.object;
-    model = createViewModel();
-    page.bindingContext = model;
-    model.loadDb();
+    mainViewModel = HomeViewModel();
+    page.bindingContext = mainViewModel;
+    api.userCur();
     page.actionBarHidden = true;
 }
 

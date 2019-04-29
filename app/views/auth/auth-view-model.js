@@ -2,6 +2,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var observableModule = require("tns-core-modules/data/observable");
 const appSettings = require("application-settings");
 var firebase = require("nativescript-plugin-firebase");
+//var firebase = require("nativescript-plugin-firebase/app");
 var dialogs = require("tns-core-modules/ui/dialogs");
 var platform = require("platform");
 require("nativescript-dom");

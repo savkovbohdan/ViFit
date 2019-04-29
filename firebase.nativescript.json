@@ -12,7 +12,7 @@
     "crashlytics": false,
     "crash_reporting": false,
     "storage": true,
-    "functions": true,
+    "functions": false,
     "facebook_auth": false,
     "google_auth": true,
     "admob": false,
