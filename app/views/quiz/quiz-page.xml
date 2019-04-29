@@ -1,0 +1,51 @@
+<Page class="page" 
+    navigatingTo="onNavigatingTo" 
+      loaded="loaded"
+      xmlns:svg="@teammaestro/nativescript-svg"
+      xmlns:progress="components/progress-bar"
+    xmlns="http://www.nativescript.org/tns.xsd">
+   <GridLayout height="100%" rows="*, 70">
+    <ScrollView  class="scroll"  height="100%" row="0">
+     
+       <StackLayout  minHeight="400" height="100%" stretchLastChild="true">
+        
+        <GridLayout rows="auto, *" Height="100%"  class="container" >
+          
+         <StackLayout row="0" class="mr-25 ml-25" >
+            <Label class="h1 text-blue mt-25" text="Привет!"/>
+            <Label class="p mt-20 descriptiot"  textWrap="true" text="Для поиска программы нам нужно задать пару вопросов."/>
+            <Label class="h1 mt-25" text="{{'Шаг ' + (quastionIndex + 1) + ' из ' + quiz.length}}"/>
+              <StackLayout class="mt-25">
+                <progress:progress-bar  class="progress-bar" />
+            </StackLayout>
+            <Label horizontalAlignment="left" class="h1 mt-25" text="{{quastion}}"/>  
+          </StackLayout >
+            
+        
+         <GridLayout row="1"   horizontalAlignment="left" verticalAlignment="top" columns="auto, auto" width="100%">
+          
+          <StackLayout col="0" class="ml-25"  width="100%" height="100%"  >
+             
+            <FlexboxLayout horizontalAlignment="left" flexWrap="wrap" alignItems="flex-start" width="200"  class="btn-list-qz">
+    
+            </FlexboxLayout >
+          </StackLayout>
+
+          <StackLayout orientation="vertical" height="100%" width="100%">
+             <svg:SVGImage src="~/images/svg/man-regular.svg" height="100%" width="100%"  horizontalAlignment="right"    class="run-people" />
+          </StackLayout >
+
+          </GridLayout>
+        
+        </GridLayout  >
+   </StackLayout>
+    </ScrollView>    
+    <StackLayout  row="1" orientation="vertical" class="button-big" tap="{{state == 0 ? next : finish}}"> 
+        <StackLayout height="100%" orientation="horizontal" horizontalAlignment="center">
+            <Label verticalAlignment="center"   text="{{state == 0 ? 'Следующий шаг' : 'Готово'}}"  id="text" />
+            <Label verticalAlignment="center" class="fa" text="" id="icon"/>
+        </StackLayout>
+    </StackLayout>
+    
+    </GridLayout>
+</Page>

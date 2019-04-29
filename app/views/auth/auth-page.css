@@ -1,0 +1,48 @@
+.logo-vifit {
+    
+    height: 65%;
+}
+
+.bg-logo {
+    width: 100%;
+    background: url('~/images/png/bg-auth.png');
+    background-position: left bottom;
+    background-size: cover;
+}
+
+.p {
+    font-size:14dp;
+  
+}
+
+.text-logo {
+    font-weight: 500;
+    color: #FBC2A6;
+    text-align: center;
+    margin-top: 10dp;
+  
+}
+
+.soc-text {
+    color:#BBC2D4;
+    font-size: 14;
+    font-weight: 400;
+}
+
+.google-auth {
+    margin-left: 15;
+}
+
+
+.auth-select .h1 {
+    color:#BBC2D4;
+    margin-right: 25;
+}
+
+.auth-select .active {
+    color: #8DAEFF;
+}
+
+.container {
+  
+}

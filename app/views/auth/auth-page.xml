@@ -1,0 +1,49 @@
+<Page class="page" 
+    navigatingTo="onNavigatingTo" 
+    xmlns:svg="@teammaestro/nativescript-svg"
+    xmlns:components="components/text-input"
+    xmlns:componentst="components/button-big"
+    xmlns="http://www.nativescript.org/tns.xsd">
+   <GridLayout rows="*, 70">
+    <ScrollView  class="scroll" height="100%" row="0">
+      <GridLayout class="container"  rows="auto, auto">
+       <GridLayout row="0" height="{{hBgheader}}" horizontalAlignment="center" class="bg-logo">
+          <StackLayout verticalAlignment="center"  class="logo-vifit">
+            <svg:SVGImage  src="~/images/svg/logo.svg"  class="logo-vifit" />
+            <Label class="p text-logo mb-25" text="{{slogan}}"/>
+          </StackLayout>
+        </GridLayout>
+        <StackLayout row="1" class="auth-form mr-25 ml-25 mt-20">
+          <StackLayout class="auth-select" orientation="horizontal" horizontalAlignment="left">
+              <Label tap="{{authState}}" class="pager active tb-auth" text="Вход"/>
+              <Label tap="{{authState}}" class="ml-25 pager no-active tb-reg" text="Регистрация"/>
+          </StackLayout>
+          <GridLayout class="mt-20">
+            <components:text-input  hint="Email" text="{{email}}"/>
+            <Label  verticalAlignment="center" class="text-input-icon fa" text="" />
+          </GridLayout>
+          <GridLayout class="mt-15">
+            <components:text-input  hint="Пароль"  secure="true" text="{{password}}"/>
+            <Label  verticalAlignment="center" class="text-input-icon fa" text="" />
+          </GridLayout>
+           <GridLayout class="mt-15 h-input" style="transform:scale(0,0);">
+            <components:text-input hint="Пароль еще раз"  secure="true" text="{{passwordCorrect}}"/>
+            <Label  verticalAlignment="center" class="text-input-icon fa" text="" />
+          </GridLayout>
+          <StackLayout  class="mt-20 social-auth"  style="transform:translate(0,-80);" orientation="horizontal" horizontalAlignment="left">
+              <Label  verticalAlignment="center"  class="soc-text" text="Вход через соц. сеть"/>
+              <StackLayout   tap="{{ authGoogle }}" class="google-auth" verticalAlignment="center" >
+                <svg:SVGImage width="30dp" height="30dp" src="~/images/svg/google.svg"  />
+              </StackLayout>
+          </StackLayout>
+        </StackLayout>
+      </GridLayout>
+    </ScrollView>
+    <StackLayout  row="1" orientation="vertical" class="button-big" tap="{{state == 0 ? auth : registration}}">
+        <StackLayout height="100%" orientation="horizontal" horizontalAlignment="center">
+            <Label verticalAlignment="center"   text="{{state == 0 ? 'Вход' : 'Регистрация'}}"  id="text" />
+            <Label verticalAlignment="center" class="fa" text="" id="icon"/>
+        </StackLayout>
+    </StackLayout>
+    </GridLayout>
+</Page>

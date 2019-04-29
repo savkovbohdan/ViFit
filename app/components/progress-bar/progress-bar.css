@@ -1,0 +1,12 @@
+.progress-bar {
+    background: #EAEEFF;
+    height: 6;
+    border-radius: 3;
+    width: 100%;
+}
+
+.progress-bar StackLayout {
+    border-radius: 3;
+    background: #83A7FF;
+}
+

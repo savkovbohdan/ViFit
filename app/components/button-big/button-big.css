@@ -1,0 +1,21 @@
+.button-big {
+    height: 70dp;
+    width: 100%;
+    background: linear-gradient(to right,#6D89FC, #8AB6FD);
+}
+
+
+.button-big #text {
+    color: #fff;
+    font-size: 14dp;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing:0.2dp;
+}
+
+.button-big  #icon {
+    color: #fff;
+    font-size: 15;
+    margin-top: 2dp;
+    margin-left: 15dp;
+}

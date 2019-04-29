@@ -1,0 +1,127 @@
+﻿/*
+In NativeScript, the app.css file is where you place CSS rules that
+you would like to apply to your entire application. Check out
+http://docs.nativescript.org/ui/styling for a full list of the CSS
+selectors and properties you can use to style UI components.
+
+/*
+In many cases you may want to use the NativeScript core theme instead
+of writing your own CSS rules. For a full list of class names in the theme
+refer to http://docs.nativescript.org/ui/theme. 
+The imported CSS rules must precede all other types of rules.
+@import '~nativescript-theme-core/css/core.light.css';
+*/
+
+
+/*
+The following CSS rule changes the font size of all UI
+components that have the btn class name.
+*/
+
+.text-input {
+    border-width: 1;
+    font-weight: 400;
+    border-color:rgba(255, 255, 255, 0.3);
+    border-radius: 5dp;
+    font-size: 14;
+    color: #fff;
+    padding-top: 22;
+    padding-bottom: 22;
+    padding-left: 50dp;
+    placeholder-color:#BBC2D4;
+    color: #83A7FF;
+    background: #EAEEFF;
+}
+
+.text-input-icon {
+    color: #83A7FF;
+    margin-left: 20dp;
+    font-size: 15;
+    padding-top: 4;
+}
+
+.page {
+    background-color: #FEFCFA;
+}
+
+.fa {
+    font-family: icomoon;
+    font-size: 15dp;
+}
+
+.pager {
+    font-size: 18;
+    font-weight: 600;
+    color: #BBC2D4;
+}
+
+.h1 {
+    font-size: 18;
+    font-weight: 600;
+    color: #0A0A0D;
+}
+
+.text-blue {
+    color: #83A7FF;
+}
+
+
+.mt-25 {
+    margin-top: 25;
+}
+
+.mt-20 {
+    margin-top: 20;
+}
+.mt-15 {
+    margin-top: 15;
+}
+
+
+
+.ml-25 {
+    margin-left: 25;
+}
+
+.mr-25 {
+    margin-right: 25;
+}
+
+
+.mb-25 {
+    margin-bottom: 25;
+}
+
+.mb-20 {
+    margin-bottom: 20;
+}
+
+
+.bg-black {
+    background: #0A0A0D;
+}
+
+
+
+.button-big {
+    height: 70dp;
+    width: 100%;
+    background: linear-gradient(to right,#6D89FC, #8AB6FD);
+}
+
+
+.button-big #text {
+    color: #fff;
+    font-size: 14dp;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing:0.2dp;
+
+}
+
+.button-big  #icon {
+    color: #fff;
+    font-size: 15;
+    margin-top: 2dp;
+    margin-left: 15dp;
+}

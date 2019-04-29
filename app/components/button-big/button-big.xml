@@ -1,0 +1,7 @@
+<!-- app/components/button-big/button-big.xml> --> 
+    <StackLayout orientation="vertical" loaded="onLoad" class="button-big" tap=""> 
+        <StackLayout height="100%" orientation="horizontal" horizontalAlignment="center">
+            <Label verticalAlignment="center"  text="" id="text" />
+            <Label verticalAlignment="center" class="fa" text="" id="icon"/>
+        </StackLayout>
+    </StackLayout>

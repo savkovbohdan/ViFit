@@ -1,0 +1,46 @@
+<Page 
+    xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:maps="nativescript-google-maps-sdk"
+    xmlns:sd="nativescript-ui-sidedrawer"
+    xmlns:lv="nativescript-ui-listview"
+    navigatingTo="onNavigatingTo" 
+    class="page">
+   
+        <GridLayout rows="75,*">
+            <FlexboxLayout  width="100%" row="0" class="nv-top">
+                    <StackLayout  class="icon-nv icon-left" tap="{{onBack}}" style="background-image:url('~/images/back-arow.png');"  />   
+            </FlexboxLayout>
+
+             <lv:RadListView row="1" items="{{ historyList }}"
+                selectionBehavior="None" 
+                itemSwipeProgressEnded="onSwipeCellFinished"
+                itemSwipeProgressStarted="onSwipeCellStarted" 
+                itemSwipeProgressChanged="onSwipeCellProgressChanged"
+                itemSwiping="onItemSwiping" 
+                swipeActions="true"
+             >
+                <lv:RadListView.listViewLayout>
+                    <lv:ListViewLinearLayout scrollDirection="Vertical" />
+                </lv:RadListView.listViewLayout>
+                <lv:RadListView.itemTemplate>
+                    <StackLayout class="list-item" id="{{'card-' + id}}" orientation="Vertical">
+                            <Label  horizontalAlignment="left" text="{{'Дата - ' + datetime}}"/>
+                            <Label  horizontalAlignment="left" text="{{'Дистанция - ' + distance + ' метр.'}}"/>
+                            <Label  horizontalAlignment="left" text="{{'Время - ' + time}}"/>
+                    </StackLayout>
+                </lv:RadListView.itemTemplate>
+                <lv:RadListView.itemSwipeTemplate>
+                    <GridLayout class="list-item-del" columns="auto, *, auto" backgroundColor="#000">
+                        <StackLayout id="mark-view" class="rd-10" col="0" style="background-color: red;" tap="{{onDelateList}}" paddingLeft="30" paddingRight="30" orientation="horizontal">
+                            <Label text="удалить" style="text-size: 15" verticalAlignment="center" horizontalAlignment="center" />
+                        </StackLayout>
+                        <StackLayout id="delete-view" class="rd-10" col="2" style="background-color: red;" tap="{{onDelateList}}"  paddingLeft="30" paddingRight="30" orientation="horizontal">
+                            <Label text="удалить" style="text-size: 15" verticalAlignment="center" horizontalAlignment="center" />
+                        </StackLayout>
+                    </GridLayout>
+                </lv:RadListView.itemSwipeTemplate>
+
+            </lv:RadListView>
+        </GridLayout>
+
+</Page>

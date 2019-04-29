@@ -1,0 +1,60 @@
+.page {
+    background:#FEFCFA;
+}
+.tabview {
+    tab-text-color: #D7D6E6;
+    selected-tab-text-color:#83A7FF;
+    text-align: center;
+    tab-background-color:#fff;
+    text-transform:none;
+    border-color: transparent;
+    border-width: 1;
+   
+}
+.tabview .fa {
+    font-size: 18;
+ 
+}
+.tabview .active-tab {
+    text-align: center;
+    font-size: 13;
+    padding: 0dp;
+    margin: 0dp;
+    text-transform:none;
+}
+
+/*history*/
+.card-item {
+    background: #2381DE;
+    border-radius: 10dp;
+    color: #fff;
+
+    padding:10dp;
+    font-size: 15dp;
+    margin-right: 40dp;
+}
+
+.list-item Label {
+    padding-top: 5dp;
+    padding-bottom: 5dp;
+}
+
+.list-item-del {
+    margin-top: 30dp;
+    margin-left: 25dp;
+    margin-right: 25dp;
+    border-radius: 10dp;
+
+}
+
+
+.rd-10 {
+    color:#fff;
+    border-radius:10dp;
+}
+
+.block {
+    width: 300dp;
+    height: 300dp;
+   
+}

@@ -1,0 +1,58 @@
+<Page 
+    xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:maps="nativescript-google-maps-sdk"
+    xmlns:sd="nativescript-ui-sidedrawer"
+    xmlns:lv="nativescript-ui-listview"
+    navigatingTo="onNavigatingTo" 
+    class="page">
+   
+      
+    
+<TabView id="tabViewContainer" class="tabview" androidTabsPosition="bottom">
+    <TabViewItem title="&#xA;Тренировки" class="fa active-tab"> 
+        <GridLayout rows="75,*">
+            <FlexboxLayout  width="100%" row="0" class="nv-top">
+                    <StackLayout  class="icon-nv icon-left" tap="{{onBack}}" style="background-image:url('~/images/back-arow.png');"  />   
+            </FlexboxLayout>
+
+             <Repeater loaded="onCardLoaded" row="1" items="{{ historyList }}">
+                    <Repeater.itemsLayout>
+                        <GridLayout class="block"  />
+                    </Repeater.itemsLayout>
+                    <Repeater.itemTemplate>
+                         <StackLayout pan="onDrag" class="card-item" id="{{'card-' + id}}" orientation="Vertical">
+                            <Label  horizontalAlignment="left" text="{{'Дата - ' + datetime}}"/>
+                            <Label  horizontalAlignment="left" text="{{'Дистанция - ' + distance + ' метр.'}}"/>
+                            <Label  horizontalAlignment="left" text="{{'Время - ' + time}}"/>
+                        </StackLayout>
+                    </Repeater.itemTemplate>
+                </Repeater>
+        </GridLayout>
+    </TabViewItem>
+
+    <TabViewItem title="" class="fa">
+        <StackLayout>
+            <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
+        </StackLayout>
+    </TabViewItem>
+
+       <TabViewItem title="" class="fa">
+        <StackLayout>
+            <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
+        </StackLayout>
+    </TabViewItem>
+
+       <TabViewItem title="" class="fa">
+        <StackLayout>
+            <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
+        </StackLayout>
+    </TabViewItem>
+
+
+</TabView>
+
+        
+
+    
+
+</Page>

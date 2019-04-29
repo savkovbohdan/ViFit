@@ -1,0 +1,9 @@
+<!-- app/components/text-input/text-input.xml> --> 
+    
+      <TextField  class="text-input" text="" secure="false" hint="" returnPress="onSTextChange" autocorrect="false" maxLength="100" id="textfield"/>  
+   <!--<GridLayout  loaded="onLoad">
+        <TextField class="text-input" text="" returnPress="onSTextChange" autocorrect="false" maxLength="100" id="textfield"/>  
+        <Label  verticalAlignment="center" class="text-input-icon fa" text="" id="textinputicon" />
+    </GridLayout>-->
+
+

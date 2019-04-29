@@ -1,0 +1,5 @@
+<!-- app/components/button-big/progress-bar.xml> --> 
+    <StackLayout orientation="vertical" loaded="onLoad" class="progress-bar" tap="">
+        <StackLayout height="100%" width="1%" class="progress" orientation="horizontal" horizontalAlignment="left">
+        </StackLayout>
+    </StackLayout>

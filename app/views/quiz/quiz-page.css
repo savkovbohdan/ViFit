@@ -1,0 +1,35 @@
+
+.btn-select {
+    background: #EAEEFF;
+    height:40dp;
+    width: 140;
+    border-radius: 5;
+    border-color: transparent;
+    border-width: 1;
+    color:#838FAD;
+    font-size: 14;
+    text-transform: none;
+}
+
+.run-people {
+    height: 100%;
+    transform: translate(300, 0);
+    margin-top: 15dp;
+}
+
+.container {
+
+}
+
+.bg-red {
+    background: red;
+}
+
+.descriptiot {
+    color: #838FAD;
+}
+
+.active-btn{
+    background: #83A7FF;
+    color: #fff;
+}

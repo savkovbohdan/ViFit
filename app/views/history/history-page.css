@@ -1,0 +1,100 @@
+Page {
+    background: #000000;
+}
+
+.btn {
+    background: #2381DE;
+    height: 60dp;
+    width: 100%;
+    border-radius: 0;
+    border-color: transparent;
+    border-width: 1;
+    color:#fff;
+    font-size: 15dp;
+    text-transform: none;
+}
+
+.timer {
+    font-size: 40dp;
+    font-weight: 200;
+    color: #fff;
+    text-align: center;
+    margin-top: 30dp;
+}
+
+.map {
+    height: 300dp;
+}
+.tracker-stat {
+    margin-top: 30dp;
+}
+
+.tracker-stat Label {
+    color: #fff;
+    text-align: center;
+}
+
+
+.icon-nv{
+    height: 15dp;
+    width: 40dp;
+    background-repeat: no-repeat;
+    background-size: 20dp auto;
+    background-position: center center;
+}
+    
+.NavigateTop .icon-left {
+      background-position:left center;  
+}
+
+.nv-top {
+    margin-left: 25dp;
+}
+
+.sidedrawer-left {
+   background: #000;
+    
+}
+
+.sidedrawer-list-item-text {
+    font-size: 15px;
+    font-weight: 200;
+    padding-top: 30dp;
+    padding-left: 25dp;
+    color: #fff;
+}
+
+
+
+/*history*/
+.list-item {
+    background: #2381DE;
+    border-radius: 10dp;
+    color: #fff;
+    margin-left: 25dp;
+    margin-right: 25dp;
+    margin-top: 30dp;
+    padding:10dp;
+    padding-left: 25dp;
+    font-size: 15dp;
+
+}
+
+.list-item Label {
+    padding-top: 5dp;
+    padding-bottom: 5dp;
+}
+
+.list-item-del {
+    margin-top: 30dp;
+    margin-left: 25dp;
+    margin-right: 25dp;
+    border-radius: 10dp;
+
+}
+
+
+.rd-10 {
+    color:#fff;
+    border-radius:10dp;
+}

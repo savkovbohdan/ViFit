@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>868063410396-bt301agoq9l1sf4d8s6qp82q3lbs4ue8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.868063410396-bt301agoq9l1sf4d8s6qp82q3lbs4ue8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD6sEek5ikzIJv564ps_di1ExpYomz2Sko</string>
+	<key>GCM_SENDER_ID</key>
+	<string>868063410396</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.nativescript.ViFit</string>
+	<key>PROJECT_ID</key>
+	<string>vifit-1e403</string>
+	<key>STORAGE_BUCKET</key>
+	<string>vifit-1e403.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:868063410396:ios:8d5df8d20b0cef9e</string>
+	<key>DATABASE_URL</key>
+	<string>https://vifit-1e403.firebaseio.com</string>
+</dict>
+</plist>

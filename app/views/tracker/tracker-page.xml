@@ -1,0 +1,66 @@
+<Page 
+    xmlns="http://schemas.nativescript.org/tns.xsd" 
+     xmlns:sd="nativescript-ui-sidedrawer"
+    navigatingTo="onNavigatingTo" 
+      xmlns:svg="nativescript-svg"
+    class="page">
+   
+
+     <sd:RadSideDrawer id="sideDrawer" drawerTransition="PushTransition" drawerLocation="Left">
+        <!-- side drawer content -->
+        <sd:RadSideDrawer.drawerContent>
+            <StackLayout class="sidedrawer-left">
+                <StackLayout class="sidedrawer-content">
+                    <Label text="История" class="sidedrawer-list-item-text" tap="{{toHistory}}"/>
+                    <Label text="Отправить БД по email" class="sidedrawer-list-item-text" tap="{{toEmail}}" />
+                    <Label text="Пригласить друга (смс)" class="sidedrawer-list-item-text" tap="{{toContacts}}"/>
+                </StackLayout>
+            </StackLayout>
+        </sd:RadSideDrawer.drawerContent>
+
+        <!-- The main content -->
+        <sd:RadSideDrawer.mainContent>
+        <GridLayout rows="75,*, 60">
+            <FlexboxLayout  width="100%" row="0" class="nv-top">
+                    <StackLayout  class="icon-nv icon-left" tap="{{openMenu}}" style="background-image:url('~/images/hamburger.png');"  />   
+            </FlexboxLayout>
+
+            <ScrollView row="1" orientation="vertical" height="100%" width="100%">
+                <StackLayout  corientation="vertical" height="100%">
+
+                    <Label class="timer" text="{{ timer }}" textWrap="true"/>
+
+                    <FlexboxLayout class="tracker-stat">
+                        <StackLayout flexGrow="1">
+                            <Label text="{{ distance }}" textWrap="true"/>
+                            <Label text="метры" textWrap="true"/>
+                        </StackLayout>
+                        <StackLayout flexGrow="1" >     
+                            <Label text="{{ steps }}" textWrap="true"/>         
+                            <Label  text="шаги" flexGrow="1" />
+                        </StackLayout>
+                        <StackLayout  flexGrow="1">
+                            <Label text="{{ (steps * 0.03) }}" textWrap="true"/>  
+                            <Label text="калории" flexGrow="1" />
+                        </StackLayout>
+                </FlexboxLayout>
+
+
+                    <Label text="{{ distance }}" class="h2 text-center" textWrap="true"/>
+                    <Label text="{{ steps }}" class="h2 text-center" textWrap="true"/>
+                
+                    
+                    
+                   <!-- <maps:mapView class="map" latitude="{{ latitude }}" longitude="{{ longitude }}" zoom="{{ zoom }}" mapReady="{{ onMapReady }}" />-->
+                
+                </StackLayout>
+            </ScrollView>
+            <StackLayout  row="2" class="float-one">
+                <Button text="{{ getButtonLabel() }}" tap="{{ toggleTracking }}" class="{{ getButtonStyle() }}"/>
+            </StackLayout>
+        </GridLayout>
+
+    </sd:RadSideDrawer.mainContent>
+    <!-- The main content end-->
+    </sd:RadSideDrawer>
+</Page>
