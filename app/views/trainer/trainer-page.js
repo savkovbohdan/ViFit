@@ -10,8 +10,9 @@ function onNavigatingTo(args) {
     page = args.object;
     mainViewModel = HomeViewModel();
     page.bindingContext = mainViewModel;
-    api.userCur();
+    //api.userCur();
     page.actionBarHidden = true;
+    mainViewModel.page = page;
 }
 
 var k = [0.95, 0.9,0.85];

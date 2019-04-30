@@ -8,8 +8,8 @@
    
       
     
-<TabView id="tabViewContainer" class="tabview" androidTabsPosition="bottom">
-    <TabViewItem title="&#xA;Тренировки" class="fa active-tab"> 
+<TabView loaded="{{tabLoaded}}" selectedIndexChanged="{{onSelectedIndex}}" id="tabViewContainer" class="tabview" androidTabsPosition="bottom">
+    <TabViewItem title="&#xA;text" class="fa tab active-tab"> 
         <GridLayout rows="75,*">
             <FlexboxLayout  width="100%" row="0" class="nv-top">
                     <StackLayout  class="icon-nv icon-left" tap="{{onBack}}" style="background-image:url('~/images/back-arow.png');"  />   
@@ -30,19 +30,19 @@
         </GridLayout>
     </TabViewItem>
 
-    <TabViewItem title="" class="fa">
+    <TabViewItem title="" class="fa tab">
         <StackLayout>
             <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
         </StackLayout>
     </TabViewItem>
 
-       <TabViewItem title="" class="fa">
+       <TabViewItem title="" class="fa tab">
         <StackLayout>
             <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
         </StackLayout>
     </TabViewItem>
 
-       <TabViewItem title="" class="fa">
+       <TabViewItem title="" class="fa tab">
         <StackLayout>
             <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
         </StackLayout>
