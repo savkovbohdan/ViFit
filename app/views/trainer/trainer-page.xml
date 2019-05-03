@@ -3,37 +3,98 @@
     xmlns:maps="nativescript-google-maps-sdk"
     xmlns:sd="nativescript-ui-sidedrawer"
     xmlns:lv="nativescript-ui-listview"
+    xmlns:svg="@teammaestro/nativescript-svg"
+    xmlns:circularProgress="components/circular-progress-bar"
     navigatingTo="onNavigatingTo" 
+    loaded="loaded"
+    xmlns:IC="nativescript-web-image-cache"
     class="page">
    
       
-    
-<TabView loaded="{{tabLoaded}}" selectedIndexChanged="{{onSelectedIndex}}" id="tabViewContainer" class="tabview" androidTabsPosition="bottom">
-    <TabViewItem title="&#xA;text" class="fa tab active-tab"> 
-        <GridLayout rows="75,*">
-            <FlexboxLayout  width="100%" row="0" class="nv-top">
-                    <StackLayout  class="icon-nv icon-left" tap="{{onBack}}" style="background-image:url('~/images/back-arow.png');"  />   
-            </FlexboxLayout>
+<GridLayout >
+<AbsoluteLayout>
 
-             <Repeater loaded="onCardLoaded" row="1" items="{{ historyList }}">
+<StackLayout class="animate-circle-bg"/>
+</AbsoluteLayout>
+<TabView  androidOffscreenTabLimit="0" loaded="{{tabLoaded}}" selectedIndexChanged="{{onSelectedIndex}}" id="tabViewContainer" class="tabview" androidTabsPosition="bottom">
+    <TabViewItem title="&#xA;Тренировки" class="fa tab active-tab"> 
+        <GridLayout rows="60,*">
+
+            <FlexboxLayout orientation="horizontal" width="100%" row="0" class="action-bar">
+                   <Label text="" class="menu-hamburger fa ml-25"/>
+                   <Label  flexGrow="1"  text="Название страницы" class="title-page h1 mr-25"/>
+               
+            </FlexboxLayout>
+            
+            <StackLayout row="1">
+                 <FlexboxLayout class="mt-25 ml-25 mr-25" >
+                    <Label  class="h1" flexGrow="1" alignSelf="center" horizontalAlignment="left" text="Мои программы"/>
+                    <StackLayout tap="{{loadData}}" class="btn-min"   horizontalAlignment="right"  orientation="horizontal" >
+                        <Label text="" class="fa"/>
+                        <Label  text="Добавить"/>
+                    </StackLayout>
+                 </FlexboxLayout>
+
+                <FlexboxLayout class="mt-25 ml-25 mr-25"  >
+                
+                <Repeater   width="50%" horizontalAlignment="left" pan="{{onDrag}}"  items="{{ userWorkouts }}">
                     <Repeater.itemsLayout>
-                        <GridLayout class="block"  />
+                        <AbsoluteLayout class="card-block"  />
                     </Repeater.itemsLayout>
                     <Repeater.itemTemplate>
-                         <StackLayout pan="onDrag" class="card-item" id="{{'card-' + id}}" orientation="Vertical">
-                            <Label  horizontalAlignment="left" text="{{'Дата - ' + datetime}}"/>
-                            <Label  horizontalAlignment="left" text="{{'Дистанция - ' + distance + ' метр.'}}"/>
-                            <Label  horizontalAlignment="left" text="{{'Время - ' + time}}"/>
-                        </StackLayout>
+                         <GridLayout class="card-item">
+                             <IC:WebImage class="card-image" height="100%" width="100%" stretch="aspectFill"  placeholder="~/images/png/man-bold.png" src="{{poster}}"/>
+                             <svg:SVGImage src="~/images/svg/border.svg" height="10" width="10" style="horizontal-align: left; vertical-align:top; " />
+                             <svg:SVGImage src="~/images/svg/border.svg"  rotate="90" height="10" width="10" style="horizontal-align: right; vertical-align:top; " />
+                             <svg:SVGImage src="~/images/svg/border.svg"  rotate="-90" height="10" width="10" style="horizontal-align: left; vertical-align:bottom; " />
+                             <svg:SVGImage src="~/images/svg/border.svg" rotate="-180" height="10" width="10" style="horizontal-align: right; vertical-align:bottom; " />
+                        </GridLayout>
                     </Repeater.itemTemplate>
                 </Repeater>
+
+                    <FlexboxLayout class="workout-min" width="50%">
+                        <StackLayout alignSelf="center"  class="ml-20" horizontalAlignment="left">
+                            <Label class="name-workout" textWrap="true" text="{{userWorkouts[indexCard].name == 'undefined' ? 'loading' : userWorkouts[indexCard].name}}"/>
+                            
+
+                                <FlexboxLayout  class="mt-20">
+                                 <circularProgress:CircularProgressView height="60" width="60" />
+                                         <StackLayout class="ml-15" alignSelf="center" orientation="vertical" flexGrow="1">
+                                            <Label class="progress-workout" textWrap="true" text="Пройдено"/>
+                                            <Label class="progress-workout" textWrap="true" text="20 / 30"/>      
+                                        </StackLayout>                             
+                                </FlexboxLayout>
+                            <StackLayout  orientation="vertical" flexGrow="1">
+                               
+                            </StackLayout>
+                        </StackLayout>
+                        
+                    </FlexboxLayout>
+
+                </FlexboxLayout>
+                 <FlexboxLayout class="mt-25 ml-25 mr-25" >
+                    <Label  class="h1" flexGrow="1" alignSelf="center" horizontalAlignment="left" text="Задания"/>
+                    <StackLayout tap="{{loadData2}}" class="btn-min" alignSelf="center"  horizontalAlignment="right"  orientation="horizontal" >
+                        <Label text="" class="fa"/>
+                        <Label  text="Расписание"/>
+                    </StackLayout>
+                 </FlexboxLayout>
+
+            
+            </StackLayout>
+
+           
         </GridLayout>
     </TabViewItem>
 
     <TabViewItem title="" class="fa tab">
-        <StackLayout>
+     
+     <StackLayout>
             <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
         </StackLayout>
+        <!-- <TabViewItem.view>
+          <Frame id="tab1" defaultPage="views/auth/auth-page"></Frame>
+        </TabViewItem.view>-->
     </TabViewItem>
 
        <TabViewItem title="" class="fa tab">
@@ -50,7 +111,7 @@
 
 
 </TabView>
-
+</GridLayout>
         
 
     

@@ -8,6 +8,8 @@ function onNavigatingTo(args) {
     page.bindingContext = mainViewModel;
     page.actionBarHidden = true;
     mainViewModel.page = page;
+    console.log("auth loaded");
+    
 };
 
 exports.onNavigatingTo = onNavigatingTo;

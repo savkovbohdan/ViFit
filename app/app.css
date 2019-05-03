@@ -57,6 +57,7 @@ components that have the btn class name.
 
 .h1 {
     font-size: 18;
+    text-align: left;
     font-weight: 600;
     color: #0A0A0D;
 }
@@ -83,9 +84,28 @@ components that have the btn class name.
     margin-left: 25;
 }
 
+.ml-20 {
+    margin-left: 20;
+}
+
+.ml-15{
+    margin-left: 15;
+}
+
+
+
 .mr-25 {
     margin-right: 25;
 }
+
+.mr-20 {
+    margin-right: 20;
+}
+
+.mr-15 {
+    margin-right: 15;
+}
+
 
 
 .mb-25 {
@@ -124,4 +144,51 @@ components that have the btn class name.
     font-size: 15;
     margin-top: 2dp;
     margin-left: 15dp;
+}
+
+
+.action-bar {
+    background: #fff;
+}
+
+.menu-hamburger{
+    font-size: 10dp;
+    align-self: center ;
+    color: #0A0A0D;
+}
+
+.title-page {
+    text-align: center;
+    align-self: center ;
+}
+
+.btn-min {
+    background: #83A7FF;
+  
+    border-radius: 5;
+    border-color: transparent;
+    border-width: 1;
+    color:#fff;
+    font-size: 14;
+    text-transform: none;
+   
+}
+
+.btn-min Label {
+    color: #fff;
+    text-align: center;
+    font-size: 14;
+    font-weight: 500;
+    font-weight: 600;
+    margin-right: 10dp;
+    margin-top: 8dp;
+    margin-bottom: 10dp;
+}
+
+.btn-min .fa {
+    margin-left: 10dp;
+    margin-right: 10dp;
+    margin-top: 10dp;
+    margin-bottom: 10dp;
+    font-size: 12;
 }

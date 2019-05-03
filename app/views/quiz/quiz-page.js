@@ -13,11 +13,10 @@ function onNavigatingTo(args) {
 };
 
 function loaded(args){
-
-    console.log(2);
-    
     mainViewModel.run();
 }
+
+
 
 exports.loaded = loaded;
 exports.onNavigatingTo = onNavigatingTo;
