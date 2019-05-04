@@ -80,7 +80,68 @@
                     </StackLayout>
                  </FlexboxLayout>
 
+
             
+            
+                <lv:RadListView isUserInteractionEnabled="false" items="{{ scheduleWorkouts }}" itemTemplateSelector="{{ templateSelectorFunction }}">
+                    <lv:RadListView.itemTemplate>
+                        <FlexboxLayout>
+                            <GridLayout  class="bg-red" height="100%"  minWidth="25" width="25" flexGrow="1" alignSelf="stretch" >
+                                    <Label class="chek-box chek-box-chek" text=""/>
+                                    <StackLayout class="{{isLast != true ? 'line-chek-bottom' : 'no-class' }}"/>
+                                     <StackLayout class="{{isFirst != true ? 'line-chek-top'  : 'no-class' }}"/>
+                            </GridLayout>
+                            <FlexboxLayout class="workouts-list  ml-20 pt-15 pb-15 mb-10 mt-10" > 
+                                <FlexboxLayout minWidth="50" class="ml-15"  alignSelf="center">
+                                     <circularProgress:CircularProgressView height="50" width="50" />
+                                </FlexboxLayout>
+                                  <FlexboxLayout  alignSelf="center" class="ml-15">
+                                        <StackLayout  alignSelf="center">
+                                            <Label class="workouts-list-title" textWrap="true" width="100%" text="{{name}}"/>
+                                            <StackLayout class="workouts-list-icons" orientation="horizontal">
+                                                <Label text="" class="fa"/> 
+                                                <Label text="30 мин"/> 
+                                                <Label  text="" class="fa"/> 
+                                                <Label text="12"/> 
+                                            </StackLayout>
+                                        </StackLayout>
+                                </FlexboxLayout>
+                            </FlexboxLayout>
+                        </FlexboxLayout>
+                    </lv:RadListView.itemTemplate>
+                    <lv:RadListView.itemTemplates>
+                        <template key="nameDay">
+                            <StackLayout class="dateName" orientation="horizontal">
+                                <Label text="" class="fa"/> <Label text="{{ name }}"/>
+                            </StackLayout>
+                        </template>
+                        <template key="workout">
+                                    <FlexboxLayout>
+                                    <GridLayout  class="bg-red" height="100%" width="25" alignSelf="stretch">
+                                            <Label class="chek-box chek-box-chek" text=""/>
+                                              <StackLayout class="{{isLast != true ? 'line-chek-bottom' : 'no-class' }}"/>
+                                              <StackLayout class="{{isFirst != true ? 'line-chek-top'  : 'no-class' }}"/>
+                                    </GridLayout>
+                                    <FlexboxLayout class="workouts-list  ml-20 pt-15 pb-15 mb-10 mt-10" flexGrow="1"> 
+                                        <FlexboxLayout class="ml-15"  alignSelf="center">
+                                            <circularProgress:CircularProgressView height="50" width="50" />
+                                        </FlexboxLayout>
+                                        <FlexboxLayout  alignSelf="center" class="ml-15">
+                                                <StackLayout  alignSelf="center">
+                                                    <Label textWrap="true" class="workouts-list-title" text="{{name}}"/>
+                                                    <StackLayout class="workouts-list-icons" orientation="horizontal">
+                                                        <Label text="" class="fa"/> 
+                                                        <Label text="30 мин"/> 
+                                                        <Label  text="" class="fa"/> 
+                                                        <Label text="12"/> 
+                                                    </StackLayout>
+                                                </StackLayout>
+                                        </FlexboxLayout>
+                                    </FlexboxLayout>
+                                </FlexboxLayout>
+                        </template>
+                     </lv:RadListView.itemTemplates>
+                </lv:RadListView>
             </StackLayout>
 
            

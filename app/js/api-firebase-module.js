@@ -9,8 +9,6 @@ var getUserData  = () => {
   return firebase.getValue('/users/' + appSettings.getString("useruid"));
 }
 
-
-
 module.exports.getUserData = getUserData;
 
  setUserData = (data) => {
@@ -21,8 +19,6 @@ module.exports.getUserData = getUserData;
 }
 
 module.exports.setUserData = setUserData;
-
-
 
 module.exports.getUserWorkouts  = () => {
   return firebase.getValue('/users/' + appSettings.getString("useruid") + "/workouts");
@@ -48,7 +44,7 @@ module.exports.quizComplate = quizComplate;
 
 var quizIsComplate = () => {
     getUserData().then(data => {
-        if (data.value.quizIsComplate == true) {
+        if (data.value != null && data.value.quizIsComplate == true) {
             frame.topmost().navigate({
                 moduleName: "views/trainer/trainer-page",
                 animated: false});
@@ -60,7 +56,7 @@ module.exports.quizIsComplate = quizIsComplate;
  var Login = () => {
   
      getUserData().then(data => {
-        if (data.value.quizIsComplate == 1) {
+        if (data.value != null && data.value.quizIsComplate == 1) {
             appSettings.setBoolean("quizIsComplate", true);
             frame.topmost().navigate({
               moduleName: "views/trainer/trainer-page",

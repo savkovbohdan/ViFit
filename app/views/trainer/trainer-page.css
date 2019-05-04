@@ -73,16 +73,96 @@
 
 
 .workout-min .name-workout {
-    font-size: 15;
+    font-size: 14;
     line-height: 2;
     color: #0A0A0D;
     text-align: left;
     padding-bottom: 0;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .progress-workout {
     font-size: 12;
     color:#9AA0B1;
     text-align: left;
+}
+
+
+/*scheduleWorkouts*/
+
+.chek-box {
+    border-width: 3;
+    border-color: #8AB6FD;
+    height: 25;
+    width: 25;
+    border-radius: 12.5;
+    font-size: 0;
+    color: #fff;
+}
+
+.chek-box-chek {
+    background: #8AB6FD;
+    font-size: 8;
+    padding-top: 6dp;
+    
+}
+
+.workouts-list{
+    background: #fff;
+    border-radius: 5;
+    
+}
+
+.workouts-list-title {
+    text-align: left;
+    font-size: 15;
+    color: #0A0A0D;
+    font-weight: 500;
+    padding-bottom: 5;
+}
+
+
+.workouts-list-icons Label  {
+    color: #9AA0B1;
+    margin-right: 15;
+    font-size: 12;
+    font-weight: 500;
+}
+
+
+
+
+.workouts-list-icons .fa {
+    margin-right: 5;
+    margin-left: 0;
+    font-size: 14;
+}
+
+.line-chek-bottom {
+    width: 2;
+    background: #8AB6FD;
+    height: 50%;
+    margin-bottom: -12.5;
+    vertical-align: bottom;
+}
+
+.line-chek-top {
+    width: 2;
+    background: #8AB6FD;
+    height: 50%;
+    margin-top: -12.5;
+    vertical-align: top;
+}
+
+.dateName Label{
+    color: #F9B68F;
+    font-size: 14;
+    font-weight: 600;
+    margin-bottom: 10;
+    letter-spacing: 0.15dp;
+    
+}
+
+.dateName .fa{
+    margin-right: 10;
 }

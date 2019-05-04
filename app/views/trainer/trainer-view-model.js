@@ -46,6 +46,7 @@ function HomeViewModel() {
     },
     userWorkouts: [],
     userModel:[],
+    scheduleWorkouts: new ObservableArray(),
     onCardLoaded: function () {
       var i = 0;
       var listClass = viewModel.page.getElementsByClassName("card-item").reverse();
@@ -244,6 +245,7 @@ function HomeViewModel() {
               second.classList.add("card-other");
               second.classList.remove("card-second");
             }
+
           }
 
 
@@ -252,28 +254,43 @@ function HomeViewModel() {
       }
     },
     userDataListener: function (data) {
-      if(data.value!=null)
+      if(data.value!=null){
         viewModel.userModel = data.value;
+        if(data.value.scheduleWorkouts != null)
+          viewModel.taskGenerator(data.value.scheduleWorkouts);
+      }
       console.log("listennedEvent");
       var temp = [];
       var i = 0;
       for (var key in data.value.workouts) {
         // console.log(data.value.workouts);
         api.getWorkout(data.value.workouts[key].idWorkout).then(workoutData => {
-          if (workoutData.value != null)
+       //   console.log(workoutData);
+          if (workoutData.value != null){
+            workoutData.value.key = workoutData.key
             temp.push(workoutData.value);
+
+          // temp[workoutData.key] = workoutData.value;
+           // workoutData.value.key = workoutData.key
+           // temp.push(workoutData.value);
+           // console.log(temp);
+          }
           if (i == Object.keys(data.value.workouts).length - 1) {
             var j = 0;
-            console.log(1);
-            for (var k in temp) {
+      //      console.log(1);
+            for (var kid in temp) {
               var f = (k) => {
+               // console.log(temp[k]);
                 firebase.storage.getDownloadUrl({
                   remoteFullPath: temp[k].posters[0]
                 }).then(
                   function (url) {
-                    console.log(2);
+                  //  console.log(2);
                     temp[k].poster = url;
                     if (j == (Object.keys(temp).length - 1)) {
+         //             console.log("finish");
+               //       console.log(temp);
+                      viewModel.userWorkouts = [];
                       viewModel.userWorkouts = temp;
                       appSettings.setString("userWorkouts", JSON.stringify(temp));
                       viewModel.onCardLoaded();
@@ -291,7 +308,7 @@ function HomeViewModel() {
                   j++;
                 });
               }
-              f(k);
+              f(kid);
             }
           }
 
@@ -303,13 +320,118 @@ function HomeViewModel() {
       }
     },
 
+
+
+    getType:function(item){
+      console.log(item.type);
+      return item.type;
+    },
+
+    templateSelectorFunction:function (item, index, items) {
+      if(typeof item.type == "undefined")
+        return "default";
+      return item.type;
+    },
+
+    //Генератор заданий
+    taskGenerator:function(data){
+
+
+   
+    var date = new Date();
+    var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    date.getDay()
+    var removed = days.splice(0, date.getDay());
+    days = days.concat(removed);
+    
+    var temp = [];
+    for(key in days){
+     
+
+
+
+      nameDay = "error";
+      if(key == 0){
+        nameDay = "Сегодня";
+      }else if(key == 1){
+        nameDay = "Завтра";
+      }else{
+        nameDay = days[key];
+      }
+
+      titleDay = {
+        name: nameDay,
+        type: "nameDay"
+      }
+
+      temp.push(titleDay);
+
+     var  indexFirstInDay =  temp.length;
+
+
+      days[key];
+      flagWorkouts = false
+      if(typeof data[days[key]] != "undefined"){
+         tasks = data[days[key]];
+        for(task in tasks){
+          if(typeof tasks[task].idWorkout != "undefined"){
+              var taskTemp;
+              userWork = viewModel.userWorkouts;
+              index = userWork.findIndex(x => x.key ==  tasks[task].idWorkout);
+              if (index != -1){
+                taskTemp = userWork[index];
+                  /* if(typeof tasks[task].type != "undefined")
+                   taskTemp.type = userWork[index].type;*/ 
+                //   taskTemp.type = "workout";       
+                temp.push(taskTemp);
+                   flagWorkouts = true;
+              }
+          }
+        }
+      }
+
+      if(flagWorkouts != true){
+        taskTemp = {
+          name:"Выходной",
+          type: "workout"
+        }
+        temp.push(taskTemp);
+      }
+
+
+
+      var indexLastInDay  =  temp.length - 1;
+
+
+      console.log("first:" + indexFirstInDay);
+      console.log("last:" + indexLastInDay);
+     
+      if(typeof temp[indexFirstInDay] != "undefined"){
+        temp[indexFirstInDay].isFirst = true;
+         // console.log(indexFirstInDay);
+      }
+
+      if(typeof temp[indexLastInDay] != "undefined"){
+        temp[indexLastInDay].isLast = true;
+      }
+
+
+    }
+
+    viewModel.scheduleWorkouts = temp;
+
+    console.log(  viewModel.scheduleWorkouts);
+
+    },
+
     //Загрузка данных для тернировок пользователя
     loadData: function () {
       var tempUserWorkouts = appSettings.getString("userWorkouts");
       if (typeof tempUserWorkouts != "undefined") {
         viewModel.userWorkouts = JSON.parse(tempUserWorkouts);
-
       }
+
+
       setTimeout(() => {
         viewModel.onCardLoaded();
         viewModel.indexCard = 0;
@@ -325,7 +447,11 @@ function HomeViewModel() {
         );
       }
 
-      console.log(["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"][new Date(2010, 0, 1).getDay()]);
+
+    
+
+    // console.log(["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"][Date.now().getDay()]);
+
       
       /* api.getUserData().then(data => {
        
