@@ -1,180 +1,237 @@
-<Page 
-    xmlns="http://schemas.nativescript.org/tns.xsd" 
-    xmlns:maps="nativescript-google-maps-sdk"
-    xmlns:sd="nativescript-ui-sidedrawer"
-    xmlns:lv="nativescript-ui-listview"
-    xmlns:svg="@teammaestro/nativescript-svg"
-    xmlns:circularProgress="components/circular-progress-bar"
-    navigatingTo="onNavigatingTo" 
-    loaded="loaded"
-    xmlns:IC="nativescript-web-image-cache"
-    class="page">
-   
-      
-<GridLayout >
-<AbsoluteLayout>
-
-<StackLayout class="animate-circle-bg"/>
-</AbsoluteLayout>
-<TabView  androidOffscreenTabLimit="0" loaded="{{tabLoaded}}" selectedIndexChanged="{{onSelectedIndex}}" id="tabViewContainer" class="tabview" androidTabsPosition="bottom">
-    <TabViewItem title="&#xA;Тренировки" class="fa tab active-tab"> 
-        <GridLayout rows="60,*">
-
-            <FlexboxLayout orientation="horizontal" width="100%" row="0" class="action-bar">
-                   <Label text="" class="menu-hamburger fa ml-25"/>
-                   <Label  flexGrow="1"  text="Название страницы" class="title-page h1 mr-25"/>
-               
-            </FlexboxLayout>
-            
-            <StackLayout row="1">
-                 <FlexboxLayout class="mt-25 ml-25 mr-25" >
-                    <Label  class="h1" flexGrow="1" alignSelf="center" horizontalAlignment="left" text="Мои программы"/>
-                    <StackLayout tap="{{loadData}}" class="btn-min"   horizontalAlignment="right"  orientation="horizontal" >
-                        <Label text="" class="fa"/>
-                        <Label  text="Добавить"/>
-                    </StackLayout>
-                 </FlexboxLayout>
-
-                <FlexboxLayout class="mt-25 ml-25 mr-25"  >
-                
-                <Repeater   width="50%" horizontalAlignment="left" pan="{{onDrag}}"  items="{{ userWorkouts }}">
-                    <Repeater.itemsLayout>
-                        <AbsoluteLayout class="card-block"  />
-                    </Repeater.itemsLayout>
-                    <Repeater.itemTemplate>
-                         <GridLayout class="card-item">
-                             <IC:WebImage class="card-image" height="100%" width="100%" stretch="aspectFill"  placeholder="~/images/png/man-bold.png" src="{{poster}}"/>
-                             <svg:SVGImage src="~/images/svg/border.svg" height="10" width="10" style="horizontal-align: left; vertical-align:top; " />
-                             <svg:SVGImage src="~/images/svg/border.svg"  rotate="90" height="10" width="10" style="horizontal-align: right; vertical-align:top; " />
-                             <svg:SVGImage src="~/images/svg/border.svg"  rotate="-90" height="10" width="10" style="horizontal-align: left; vertical-align:bottom; " />
-                             <svg:SVGImage src="~/images/svg/border.svg" rotate="-180" height="10" width="10" style="horizontal-align: right; vertical-align:bottom; " />
-                        </GridLayout>
-                    </Repeater.itemTemplate>
-                </Repeater>
-
-                    <FlexboxLayout class="workout-min" width="50%">
-                        <StackLayout alignSelf="center"  class="ml-20" horizontalAlignment="left">
-                            <Label class="name-workout" textWrap="true" text="{{userWorkouts[indexCard].name == 'undefined' ? 'loading' : userWorkouts[indexCard].name}}"/>
-                            
-
-                                <FlexboxLayout  class="mt-20">
-                                 <circularProgress:CircularProgressView height="60" width="60" />
-                                         <StackLayout class="ml-15" alignSelf="center" orientation="vertical" flexGrow="1">
-                                            <Label class="progress-workout" textWrap="true" text="Пройдено"/>
-                                            <Label class="progress-workout" textWrap="true" text="20 / 30"/>      
-                                        </StackLayout>                             
-                                </FlexboxLayout>
-                            <StackLayout  orientation="vertical" flexGrow="1">
-                               
-                            </StackLayout>
-                        </StackLayout>
-                        
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:maps="nativescript-google-maps-sdk" 
+    xmlns:sd="nativescript-ui-sidedrawer" 
+    xmlns:lv="nativescript-ui-listview" 
+    xmlns:svg="@teammaestro/nativescript-svg" 
+    xmlns:circularProgress="components/circular-progress-bar" navigatingTo="onNavigatingTo" loaded="loaded" 
+    xmlns:IC="nativescript-web-image-cache" class="page">
+    <GridLayout >
+        <AbsoluteLayout>
+            <StackLayout class="animate-circle-bg"/>
+        </AbsoluteLayout>
+        <TabView androidOffscreenTabLimit="0" loaded="{{tabLoaded}}" selectedIndexChanged="{{onSelectedIndex}}" id="tabViewContainer" class="tabview" androidTabsPosition="bottom">
+            <TabViewItem title="&#xA;Тренировки" class="fa tab active-tab">
+                <GridLayout rows="60,*">
+                    <FlexboxLayout orientation="horizontal" width="100%" row="0" class="action-bar">
+                        <Label text="" class="menu-hamburger fa ml-25"/>
+                        <Label flexGrow="1" text="Название страницы" class="title-page h1 mr-25"/>
                     </FlexboxLayout>
+                    <StackLayout row="1">
 
-                </FlexboxLayout>
-                 <FlexboxLayout class="mt-25 ml-25 mr-25" >
-                    <Label  class="h1" flexGrow="1" alignSelf="center" horizontalAlignment="left" text="Задания"/>
-                    <StackLayout tap="{{loadData2}}" class="btn-min" alignSelf="center"  horizontalAlignment="right"  orientation="horizontal" >
-                        <Label text="" class="fa"/>
-                        <Label  text="Расписание"/>
-                    </StackLayout>
-                 </FlexboxLayout>
-
-
-            
-            
-                <lv:RadListView isUserInteractionEnabled="false" items="{{ scheduleWorkouts }}" itemTemplateSelector="{{ templateSelectorFunction }}">
-                    <lv:RadListView.itemTemplate>
-                        <FlexboxLayout>
-                            <GridLayout  class="bg-red" height="100%"  minWidth="25" width="25" flexGrow="1" alignSelf="stretch" >
-                                    <Label class="chek-box chek-box-chek" text=""/>
-                                    <StackLayout class="{{isLast != true ? 'line-chek-bottom' : 'no-class' }}"/>
-                                     <StackLayout class="{{isFirst != true ? 'line-chek-top'  : 'no-class' }}"/>
-                            </GridLayout>
-                            <FlexboxLayout class="workouts-list  ml-20 pt-15 pb-15 mb-10 mt-10" > 
-                                <FlexboxLayout minWidth="50" class="ml-15"  alignSelf="center">
-                                     <circularProgress:CircularProgressView height="50" width="50" />
-                                </FlexboxLayout>
-                                  <FlexboxLayout  alignSelf="center" class="ml-15">
-                                        <StackLayout  alignSelf="center">
-                                            <Label class="workouts-list-title" textWrap="true" width="100%" text="{{name}}"/>
-                                            <StackLayout class="workouts-list-icons" orientation="horizontal">
-                                                <Label text="" class="fa"/> 
-                                                <Label text="30 мин"/> 
-                                                <Label  text="" class="fa"/> 
-                                                <Label text="12"/> 
-                                            </StackLayout>
-                                        </StackLayout>
-                                </FlexboxLayout>
-                            </FlexboxLayout>
-                        </FlexboxLayout>
-                    </lv:RadListView.itemTemplate>
-                    <lv:RadListView.itemTemplates>
-                        <template key="nameDay">
-                            <StackLayout class="dateName" orientation="horizontal">
-                                <Label text="" class="fa"/> <Label text="{{ name }}"/>
-                            </StackLayout>
-                        </template>
-                        <template key="workout">
+                        <lv:RadListView class="ml-25 mr-25 main-rad" items="{{ scheduleWorkouts }}" itemTemplateSelector="{{ templateSelectorFunction }}">
+                            <lv:RadListView.itemTemplate>
+                                <GridLayout>
+                                    <StackLayout class="custom-shadow">
+                                    </StackLayout>
                                     <FlexboxLayout>
-                                    <GridLayout  class="bg-red" height="100%" width="25" alignSelf="stretch">
-                                            <Label class="chek-box chek-box-chek" text=""/>
-                                              <StackLayout class="{{isLast != true ? 'line-chek-bottom' : 'no-class' }}"/>
-                                              <StackLayout class="{{isFirst != true ? 'line-chek-top'  : 'no-class' }}"/>
-                                    </GridLayout>
-                                    <FlexboxLayout class="workouts-list  ml-20 pt-15 pb-15 mb-10 mt-10" flexGrow="1"> 
-                                        <FlexboxLayout class="ml-15"  alignSelf="center">
-                                            <circularProgress:CircularProgressView height="50" width="50" />
-                                        </FlexboxLayout>
-                                        <FlexboxLayout  alignSelf="center" class="ml-15">
-                                                <StackLayout  alignSelf="center">
-                                                    <Label textWrap="true" class="workouts-list-title" text="{{name}}"/>
-                                                    <StackLayout class="workouts-list-icons" orientation="horizontal">
-                                                        <Label text="" class="fa"/> 
-                                                        <Label text="30 мин"/> 
-                                                        <Label  text="" class="fa"/> 
-                                                        <Label text="12"/> 
+                                        <GridLayout class="bg-red" height="100%" minWidth="25" width="25" flexGrow="1" alignSelf="stretch">
+                                            <Label class="{{isComplate == true ? 'chek-box chek-box-chek' : 'chek-box'}}" text=""/>
+                                            <StackLayout class="{{isLast != true ? 'line-chek-bottom' : 'no-class' }}"/>
+                                            <StackLayout class="{{isFirst != true ? 'line-chek-top'  : 'no-class' }}"/>
+                                        </GridLayout>
+                                        <FlexboxLayout class="workouts-list  ml-20 pt-15 pb-15 mb-10 mt-10">
+
+                                            <GridLayout class="ml-15" minWidth="55" alignSelf="center" height="55" width="55">
+                                                <StackLayout class="progress-icons">
+                                                    <Label class="fa" text=""/>
+                                                    <Label text="+10"/>
+                                                </StackLayout>
+                                                <circularProgress:CircularProgressView height="55" width="55" text="" progress="0" />
+                                            </GridLayout>
+
+                                            <FlexboxLayout alignSelf="center" class="ml-15">
+                                                <StackLayout alignSelf="center">
+                                                    <Label class="workouts-list-title" textWrap="true" width="100%" text="{{name}}"/>
+                                                    <StackLayout class="workouts-list-icons mt-10" orientation="horizontal">
+                                                        <Label text="" class="fa"/>
+                                                        <Label text="30 мин"/>
+                                                        <Label text="" class="fa"/>
+                                                        <Label text="12"/>
                                                     </StackLayout>
                                                 </StackLayout>
+                                            </FlexboxLayout>
                                         </FlexboxLayout>
                                     </FlexboxLayout>
-                                </FlexboxLayout>
-                        </template>
-                     </lv:RadListView.itemTemplates>
-                </lv:RadListView>
-            </StackLayout>
+                                </GridLayout>
+                            </lv:RadListView.itemTemplate>
+                            <lv:RadListView.itemTemplates>
+                                <template key="first">
+                                    <StackLayout class="mb-10">
+                                        <FlexboxLayout class="mt-25">
+                                            <Label class="h1" flexGrow="1" alignSelf="center" horizontalAlignment="left" text="Программы"/>
+                                            <StackLayout class="btn-min" horizontalAlignment="right" orientation="horizontal">
+                                                <Label text="" class="fa"/>
+                                                <Label text="Добавить еще"/>
+                                            </StackLayout>
+                                        </FlexboxLayout>
+                                        <FlexboxLayout class="mt-25 ">
+                                            <Repeater width="50%" horizontalAlignment="left" pan="{{onDrag}}" items="{{ userWorkouts }}">
+                                                <Repeater.itemsLayout>
+                                                    <AbsoluteLayout class="card-block" />
+                                                </Repeater.itemsLayout>
+                                                <Repeater.itemTemplate>
+                                                    <GridLayout class="card-item">
+                                                        <IC:WebImage class="card-image" height="100%" width="100%" stretch="aspectFill" placeholder="~/images/png/man-bold.png" src="{{poster}}"/>
+                                                        <svg:SVGImage src="~/images/svg/border.svg" height="10" width="10" style="horizontal-align: left; vertical-align:top; " />
+                                                        <svg:SVGImage src="~/images/svg/border.svg" rotate="90" height="10" width="10" style="horizontal-align: right; vertical-align:top; " />
+                                                        <svg:SVGImage src="~/images/svg/border.svg" rotate="-90" height="10" width="10" style="horizontal-align: left; vertical-align:bottom; " />
+                                                        <svg:SVGImage src="~/images/svg/border.svg" rotate="-180" height="10" width="10" style="horizontal-align: right; vertical-align:bottom; " />
+                                                    </GridLayout>
+                                                </Repeater.itemTemplate>
+                                            </Repeater>
+                                            <FlexboxLayout class="workout-min" width="50%">
+                                                <StackLayout alignSelf="center" class="ml-20" horizontalAlignment="left">
+                                                    <Label class="name-workout" textWrap="true" text="{{ $parents['RadListView'].cardName}}"/>
+                                                    <FlexboxLayout class="mt-20">
+                                                        
+                                                        <GridLayout minWidth="55" alignSelf="center" height="55" width="55">
+                                                            <StackLayout class="progress-icons">
+                                                                <Label class="fa ml-5" color="#8AB6FD"  text=""/>
+                                                            </StackLayout>
+                                                            <circularProgress:CircularProgressView height="55" width="55" text="" progress="0" />
+                                                        </GridLayout>
 
-           
-        </GridLayout>
-    </TabViewItem>
+                                                        <StackLayout class="ml-15" alignSelf="center" orientation="vertical" flexGrow="1">
+                                                            <Label class="progress-workout" textWrap="true" text="Пройдено"/>
+                                                            <Label class="progress-workout" textWrap="true" text="20 / 30"/>
+                                                        </StackLayout>
+                                                    </FlexboxLayout>
+                                                    <StackLayout orientation="vertical" flexGrow="1"></StackLayout>
+                                                </StackLayout>
+                                            </FlexboxLayout>
+                                        </FlexboxLayout>
+                                        <FlexboxLayout class="mt-25 ">
+                                            <Label class="h1" flexGrow="1" alignSelf="center" horizontalAlignment="left" text="Тренировки"/>
+                                            <StackLayout class="btn-min" alignSelf="center" horizontalAlignment="right" orientation="horizontal">
+                                                <Label text="" class="fa"/>
+                                                <Label text="Ред. расписание"/>
+                                            </StackLayout>
+                                        </FlexboxLayout>
+                                    </StackLayout>
+                                </template>
+                                <template key="nameDay">
+                                    <StackLayout class="dateName mt-5 " orientation="horizontal">
+                                        <Label text="" class="fa"/>
+                                        <Label text="{{ name }}"/>
+                                    </StackLayout>
+                                </template>
+                                <template key="workout">
+                                    <GridLayout>
+                                        <StackLayout class="custom-shadow">
+                                        </StackLayout>
+                                        <FlexboxLayout>
+                                            <GridLayout class="bg-red" height="100%" minWidth="25" width="25" flexGrow="1" alignSelf="stretch">
+                                                <Label class="{{isComplate == true ? 'chek-box chek-box-chek' : 'chek-box'}}" text=""/>
+                                                <StackLayout class="{{isLast != true ? 'line-chek-bottom' : 'no-class' }}"/>
+                                                <StackLayout class="{{isFirst != true ? 'line-chek-top'  : 'no-class' }}"/>
+                                            </GridLayout>
+                                            <FlexboxLayout class="workouts-list  ml-20 pt-15 pb-15 mb-10 mt-10">
 
-    <TabViewItem title="" class="fa tab">
-     
-     <StackLayout>
-            <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
-        </StackLayout>
-        <!-- <TabViewItem.view>
-          <Frame id="tab1" defaultPage="views/auth/auth-page"></Frame>
-        </TabViewItem.view>-->
-    </TabViewItem>
+                                                <GridLayout class="ml-15" minWidth="55" alignSelf="center" height="55" width="55">
+                                                    <StackLayout class="progress-icons">
+                                                        <Label class="fa" text=""/>
+                                                        <Label text="+10"/>
+                                                    </StackLayout>
+                                                    <circularProgress:CircularProgressView height="55" width="55" text="" progress="0" />
+                                                </GridLayout>
 
-       <TabViewItem title="" class="fa tab">
-        <StackLayout>
-            <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
-        </StackLayout>
-    </TabViewItem>
+                                                <FlexboxLayout alignSelf="center" class="ml-15">
+                                                    <StackLayout alignSelf="center">
+                                                        <Label class="workouts-list-title" textWrap="true" width="100%" text="{{name}}"/>
+                                                        <StackLayout class="workouts-list-icons mt-10" orientation="horizontal">
+                                                            <Label text="" class="fa"/>
+                                                            <Label text="30 мин"/>
+                                                            <Label text="" class="fa"/>
+                                                            <Label text="12"/>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </FlexboxLayout>
+                                            </FlexboxLayout>
+                                        </FlexboxLayout>
+                                    </GridLayout>
+                                </template>
 
-       <TabViewItem title="" class="fa tab">
-        <StackLayout>
-            <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
-        </StackLayout>
-    </TabViewItem>
+                                <template key="measurement">
+                                    <GridLayout>
+                                        <StackLayout class="custom-shadow">
+                                        </StackLayout>
+                                        <FlexboxLayout class="measurement">
+                                            <GridLayout height="100%" minWidth="25" width="25" flexGrow="1" alignSelf="stretch">
+                                                <Label class="{{isComplate == true ? 'chek-box chek-box-chek' : 'chek-box'}}" text=""/>
+                                                <StackLayout class="{{isLast != true ? 'line-chek-bottom' : 'no-class' }}"/>
+                                                <StackLayout class="{{isFirst != true ? 'line-chek-top'  : 'no-class' }}"/>
+                                            </GridLayout>
+
+                                            <GridLayout class="workouts-list  ml-20 mb-10 mt-10">
+                                                <StackLayout style="{{isComplate == true ? 'transform:scale(5,3)' : ''}}" class="view-data-bg-set-radius">
+                                                </StackLayout >
+
+                                                <svg:SVGImage class="mt-15" src="~/images/svg/girl-weight.svg" class="svg-data-bg" />
+                                                <StackLayout>
+
+                                                    <FlexboxLayout class="mt-15">
+                                                        <GridLayout class="ml-15" minWidth="55" alignSelf="center" height="55" width="55">
+                                                            <StackLayout class="progress-icons">
+                                                                <Label class="fa" text=""/>
+                                                                <Label text="+10"/>
+                                                            </StackLayout>
+                                                            <circularProgress:CircularProgressView height="55" width="55" text="" progress="0" />
+                                                        </GridLayout>
+                                                        <FlexboxLayout alignSelf="center" class="ml-15">
+                                                            <StackLayout alignSelf="center">
+                                                                <Label class="workouts-list-title" textWrap="true" width="100%" text="{{name}}"/>
+                                                            </StackLayout>
+                                                        </FlexboxLayout>
+                                                    </FlexboxLayout>
 
 
-</TabView>
-</GridLayout>
-        
+                                                    <StackLayout height="{{isComplate == true ? 0 : 'auto'}}" horizontalAlignment="left" orientation="horizontal" class="ml-15 mt-5  line-text-view" width="150">
+                                                        <Label verticalAlignment="center" class="fa" text="" />
+                                                        <TextView verticalAlignment="center" hint="Поле ввода" class="text-view" />
+                                                    </StackLayout>
+                                                    <Repeater items="{{ data }}">
+                                                        <Repeater.itemsLayout>
+                                                            <StackLayout opacity="{{isComplate == false ? 0 : 1}}" height="{{isComplate == false ? 0 : 'auto'}}" horizontalAlignment="left" orientation="horizontal" class="ml-15 mb-5 mt-10 min-statistic">
+                                                            </StackLayout>
+                                                        </Repeater.itemsLayout>
+                                                        <Repeater.itemTemplate>
+                                                            <Label class="{{isLast == true ? 'min-stat-last' : ''}}" text="{{value}}" />
+                                                        </Repeater.itemTemplate>
+                                                    </Repeater>
+                                                    <StackLayout horizontalAlignment="left" row="1" width="auto" height="50" orientation="vertical" class="button-big mt-15 ml-15 mb-15" tap="{{isComplate == true ? navigateToStatistics : measurementSet}}">
+                                                        <StackLayout height="100%" orientation="horizontal" class="ml-15 mr-15" horizontalAlignment="center">
+                                                            <Label verticalAlignment="center" class="btn-text-stat" text="{{isComplate == true ? 'Вся статистика' : 'Готово'}}" id="text" />
+                                                            <Label verticalAlignment="center" class="fa" text="" id="icon"/>
+                                                        </StackLayout>
+                                                    </StackLayout>
 
-    
 
+                                                </StackLayout>
+                                            </GridLayout>
+                                        </FlexboxLayout>
+                                    </GridLayout>
+                                </template>
+                            </lv:RadListView.itemTemplates>
+                        </lv:RadListView>
+                    </StackLayout>
+                </GridLayout>
+            </TabViewItem>
+            <TabViewItem title="" class="fa tab">
+                <StackLayout>
+                    <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
+                </StackLayout>
+                <!-- <TabViewItem.view><Frame id="tab1" defaultPage="views/auth/auth-page"></Frame></TabViewItem.view>-->
+            </TabViewItem>
+            <TabViewItem title="" class="fa tab">
+                <StackLayout>
+                    <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
+                </StackLayout>
+            </TabViewItem>
+            <TabViewItem title="" class="fa tab">
+                <StackLayout>
+                    <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
+                </StackLayout>
+            </TabViewItem>
+        </TabView>
+    </GridLayout>
 </Page>

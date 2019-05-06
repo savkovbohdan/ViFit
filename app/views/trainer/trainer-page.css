@@ -7,6 +7,7 @@
     width: 1000dp;
     border-radius: 500;
     transform: translate(-500, -500);
+    opacity: 0.7;
     background: linear-gradient(to bottom, #F6F8FF, #F6F8FF, #FEF4EB);
 }
 .tabview {
@@ -19,13 +20,14 @@
     border-width: 1;
    
 }
+
 .tab {
     font-size: 16;
 }
 
 .tabview .active-tab {
     text-align: center;
-    font-size: 14;
+    font-size: 13;
     padding: 0dp;
     margin: 0dp;
     text-transform:none;
@@ -73,12 +75,12 @@
 
 
 .workout-min .name-workout {
-    font-size: 14;
+    font-size: 15;
     line-height: 2;
     color: #0A0A0D;
     text-align: left;
     padding-bottom: 0;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .progress-workout {
@@ -118,7 +120,7 @@
     font-size: 15;
     color: #0A0A0D;
     font-weight: 500;
-    padding-bottom: 5;
+  
 }
 
 
@@ -165,4 +167,56 @@
 
 .dateName .fa{
     margin-right: 10;
+}
+
+.view-data-bg-set-radius {
+    background: #000;
+    height: 200;
+    width: 200;
+    margin-right: -50%;
+    vertical-align: bottom;
+    horizontal-align: right;
+    border-radius:200 0 0 0;
+    background: linear-gradient(to bottom, #F6F8FF, #FEFEFF, #FEF4EB,#FEF4EB);
+}
+
+.svg-data-bg {
+   margin-left: 70%;
+   height: 90%;
+   width: 50%;
+   vertical-align: bottom;
+}
+
+.min-statistic {
+    opacity: 0;
+    height: 0;
+}
+.min-statistic Label {
+    color: #8AB6FD;
+    height: 40;
+
+    width: 40;
+    background:#fff;
+    margin-right: 15;
+    font-size: 13;
+    padding-top: 13dp;
+    border-radius: 40;
+    text-align: center;
+    padding-right: 5;
+    padding-left: 5;
+    font-weight: 600;
+
+}
+
+.min-statistic .min-stat-last {
+    color: #fff;
+    background:#8AB6FD;
+}
+
+.custom-shadow {
+    background: linear-gradient(-0.5deg, rgba(255,255,255, 0.01),rgba(192,191,208, 0.3), rgba(255,255,255, 0.01));
+    margin-left: 50;
+    margin-right:0;
+    vertical-align: center;
+    min-height: 110%;
 }

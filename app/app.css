@@ -82,6 +82,11 @@ components that have the btn class name.
     margin-top: 10;
 }
 
+.mt-5 {
+    margin-top: 5;
+}
+
+
 
 .ml-25 {
     margin-left: 25;
@@ -94,6 +99,17 @@ components that have the btn class name.
 .ml-15{
     margin-left: 15;
 }
+
+.ml-10{
+    margin-left: 10;
+}
+
+.ml-5{
+    margin-left: 5;
+}
+
+
+
 
 
 
@@ -108,6 +124,17 @@ components that have the btn class name.
 .mr-15 {
     margin-right: 15;
 }
+
+.mr-10 {
+    margin-right: 10;
+}
+
+
+.mr-5 {
+    margin-right: 5;
+}
+
+
 
 
 
@@ -125,6 +152,10 @@ components that have the btn class name.
 
 .mb-10 {
     margin-bottom: 10;
+}
+
+.mb-5 {
+    margin-bottom: 5;
 }
 
 .pt-10 {
@@ -226,4 +257,33 @@ components that have the btn class name.
     margin-top: 10dp;
     margin-bottom: 10dp;
     font-size: 12;
+}
+
+.line-text-view  {
+    color: #8AB6FD;
+    border-color: #8AB6FD;
+    border-width: 0 0 2 0;
+    
+}
+.line-text-view .text-view {
+    font-size: 14;
+    color: #8AB6FD;
+    border-color:transparent;
+    border-width: 1;
+    width: 100%;
+    text-align: left;
+    placeholder-color:#BBC2D4;
+}
+
+.progress-icons {
+    vertical-align: center;
+    horizontal-align:center;
+    color: #F9B68F;
+    font-size: 14;
+    font-weight: 600;
+}
+
+.progress-icons .fa {
+    padding-bottom: 1;
+
 }

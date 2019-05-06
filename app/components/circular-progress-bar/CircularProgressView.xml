@@ -15,7 +15,7 @@
 								</gauge:BarIndicatorStyle>
 							</gauge:RadialBarIndicator.indicatorStyle>
 						</gauge:RadialBarIndicator>
-						<gauge:RadialBarIndicator minimum="0" maximum="{{ progress }}" isAnimated="true">
+						<gauge:RadialBarIndicator minimum="0" maximum="{{ progress }}" id="pr" isAnimated="true">
 							<gauge:RadialBarIndicator.indicatorStyle>
 								<gauge:BarIndicatorStyle fillColor="{{ fillColor }}" cap="Round" barWidth="0.1">
 								</gauge:BarIndicatorStyle>
@@ -29,5 +29,7 @@
 				</gauge:RadialScale>
 			</gauge:RadRadialGauge.scales>
 		</gauge:RadRadialGauge>
-		<Label text="{{ text }}" color="{{ textColor }}" fontSize="{{ textSize }}" style="horizontal-align: center; vertical-align:center; font-weight:600;margin-left:2;padding-top:-2dp;" marginTop="{{ offset }}"></Label>
-	</GridLayout>
+		<StackLayout style="horizontal-align: center; vertical-align:center;">
+			<Label id="text" text="{{ text }}" color="{{ textColor }}" fontSize="{{ textSize }}" style="font-weight:600;margin-left:2;padding-top:-2dp;" marginTop="{{ offset }}"></Label>
+		</StackLayout>
+</GridLayout>

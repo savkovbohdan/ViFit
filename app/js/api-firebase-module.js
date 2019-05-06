@@ -28,6 +28,26 @@ module.exports.getWorkout = (id) => {
   return firebase.getValue('/workouts/'+ id);
 }
 
+
+
+module.exports.pushStatistics = (data, type) => {
+  return firebase.push('/users/' + appSettings.getString("useruid") + "/statistics/" + type,
+  {
+    date:firebase.ServerValue.TIMESTAMP,
+    data: data,
+    userDate: (new Date).getTime()
+  }
+  );
+}
+
+
+module.exports.getStatistics = (type) => {
+  return firebase.getValue('/users/' + appSettings.getString("useruid") + "/statistics/" + type);
+}
+
+
+
+
 /* Database end */
 quizComplate = (data) => {
     setUserData(data)

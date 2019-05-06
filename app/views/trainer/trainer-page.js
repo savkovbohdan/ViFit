@@ -4,27 +4,43 @@ var page;
 const application = require("tns-core-modules/application");
 var mainViewModel;
 var imageCache = require("nativescript-web-image-cache");
-
+var platform = require("tns-core-modules/platform");
 
 function onNavigatingTo(args) {
-if (application.android) {
-    imageCache.initialize();
-}
+    if (application.android) {
+        imageCache.initialize();
+    }
     page = args.object;
     mainViewModel = HomeViewModel();
-    
+
     page.bindingContext = mainViewModel;
-   
+
     page.actionBarHidden = true;
     mainViewModel.page = page;
 
-
-}
-
-function loaded(args){
     mainViewModel.loadData();
+
 }
 
+
+function loaded(args) {
+    if (application.android && platform.device.sdkVersion >= '21') {
+        var View = android.view.View;
+        var window = application.android.startActivity.getWindow();
+        // set the status bar to Color.Transparent
+        window.setStatusBarColor(0x000000);
+
+        var decorView = window.getDecorView();
+        decorView.setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+            | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+}
 exports.loaded = loaded;
 
 /*
