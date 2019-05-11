@@ -28,16 +28,24 @@ module.exports.getWorkout = (id) => {
   return firebase.getValue('/workouts/'+ id);
 }
 
+module.exports.removeUserData  = (url) => {
+  return firebase.remove('/users/' + appSettings.getString("useruid") + "/"  + url);
+}
+
+module.exports.pushUserData  = (url ,data) => {
+  return firebase.push('/users/' + appSettings.getString("useruid") + "/"  + url, data);
+}
+
 
 
 module.exports.pushStatistics = (data, type) => {
+
   return firebase.push('/users/' + appSettings.getString("useruid") + "/statistics/" + type,
   {
     date:firebase.ServerValue.TIMESTAMP,
     data: data,
     userDate: (new Date).getTime()
-  }
-  );
+  });
 }
 
 
@@ -45,8 +53,16 @@ module.exports.getStatistics = (type) => {
   return firebase.getValue('/users/' + appSettings.getString("useruid") + "/statistics/" + type);
 }
 
+module.exports.updatePowerPoints = (newPoints) => {
+  if(Number.isInteger(parseInt(newPoints))){ 
 
-
+    console.log(1);
+    return firebase.update(
+      '/users/' + appSettings.getString("useruid") + "/powerPoints",
+      parseInt(newPoints)
+    )
+  }
+}
 
 /* Database end */
 quizComplate = (data) => {
@@ -74,7 +90,17 @@ var quizIsComplate = () => {
 
 module.exports.quizIsComplate = quizIsComplate;
  var Login = () => {
-  
+
+  firebase.getAuthToken({
+    forceRefresh: false
+  }).then(
+      function (result) {
+        appSettings.setString("token",  result.token);
+      },
+      function (errorMessage) {
+        console.log("Auth result retrieval error: " + errorMessage);
+      }
+  );
      getUserData().then(data => {
         if (data.value != null && data.value.quizIsComplate == 1) {
             appSettings.setBoolean("quizIsComplate", true);
@@ -107,3 +133,9 @@ var Logout = () => {
 module.exports.Logout = Logout;
 
 
+module.exports.navigateToSchedule = (model) => {
+frame.topmost().navigate({
+  context: {model: model},
+  moduleName: "views/schedule/schedule-page",
+  animated: false});
+}

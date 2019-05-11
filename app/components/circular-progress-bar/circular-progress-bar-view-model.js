@@ -7,7 +7,7 @@ function CircularProgressBarViewModel() {
         fillColor: '#FCD0AD',
         fillBackgroundColor: '#FEEFE3',
         height:"45",
-        progress: 30,
+     
         text: `${30}`,
         textSize: 70 / 4
     });

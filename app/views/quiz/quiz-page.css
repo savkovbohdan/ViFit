@@ -11,6 +11,12 @@
     text-transform: none;
 }
 
+
+.active-btn{
+    background: #83A7FF;
+    color: #fff;
+}
+
 .run-people {
     height: 100%;
     transform: translate(300, 0);
@@ -27,9 +33,4 @@
 
 .descriptiot {
     color: #838FAD;
-}
-
-.active-btn{
-    background: #83A7FF;
-    color: #fff;
 }

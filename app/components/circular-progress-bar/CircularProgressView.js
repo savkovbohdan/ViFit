@@ -1,17 +1,18 @@
 const CircularProgressBarViewModel = require("./circular-progress-bar-view-model");
-
-
+require("nativescript-dom");
+var el;
 exports.onLoaded = function (args) {
-    const circularProgressBarVm = new CircularProgressBarViewModel();
+    el = args.object;
+  /*  const circularProgressBarVm = new CircularProgressBarViewModel();
     args.object.bindingContext = circularProgressBarVm;
+   
     if(typeof args.object.text != "undefined"){
         circularProgressBarVm.text = args.object.text;
     }
 
-    if(typeof args.object.progress != "undefined"){
-        circularProgressBarVm.progress = args.object.progress;
-       
-      //  progress.maximum =  args.object.progress;
+    if(typeof args.object.prog != "undefined"){
+   ////     circularProgressBarVm.progress = args.object.progress;
+        console.log( args.object.progress);
     }
 
 
@@ -21,5 +22,9 @@ exports.onLoaded = function (args) {
 
         circularProgressBarVm.progress = Math.min(cpProgress, 100);
         circularProgressBarVm.text = text;
-    }   
+    }   */
+
+    args.object.update = function (cpProgress) {
+        el.getElementsByClassName('progress-setter')[0].scales.getItem(0).indicators.getItem(1).maximum = Math.min(cpProgress, 100);
+    } 
 };

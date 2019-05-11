@@ -1,0 +1,115 @@
+<Page class="page" navigatingTo="onNavigatingTo" loaded="loaded" 
+  xmlns:lv="nativescript-ui-listview" 
+  xmlns="http://www.nativescript.org/tns.xsd">
+  <GridLayout>
+    <AbsoluteLayout>
+      <StackLayout class="animate-circle-bg"/>
+    </AbsoluteLayout>
+    <GridLayout rows="60, *, auto" class="grid-container">
+      <FlexboxLayout orientation="horizontal" width="100%" row="0" class="action-bar">
+        <Label tap="{{navigateBack}}" text="" class="menu-hamburger fa ml-25" fontSize="15" />
+      </FlexboxLayout>
+      <ScrollView class="scroll" width="100%" height="100%" row="1">
+        <GridLayout height="100%" paddingTop="0" paddingBottom="25" paddingLeft="25" paddingRight="25">
+          <StackLayout>
+            <FlexboxLayout paddingBottom="25" paddingTop="10">
+              <Label class="h1" flexGrow="1" alignSelf="center" horizontalAlignment="left" text="Расписание "/>
+            </FlexboxLayout>
+            <StackLayout class="custom-shadow">
+
+              <StackLayout class="card-white" width="100%">
+
+                <lv:RadListView class="main-rad" bo items="{{ scheduleWorkouts }}" itemTemplateSelector="{{ templateSelectorFunction }}">
+
+                  <lv:RadListView.itemTemplate>
+                    <FlexboxLayout class="ml-25 mr-25 mt-25 mb-25">
+                      <StackLayout flexGrow="1">
+                        <Label horizontalAlignment="left" width="30" flexGrow="1" text="СБ"/>
+                      </StackLayout>
+                      <StackLayout flexGrow="1">
+                        <Label horizontalAlignment="right" width="30" flexGrow="1" text="add"/>
+                      </StackLayout>
+                    </FlexboxLayout>
+                  </lv:RadListView.itemTemplate>
+                  <lv:RadListView.itemTemplates>
+
+                    <template key="white-day">
+                      <StackLayout class="list-task">
+                       
+                        <FlexboxLayout class="white-day day">
+                          <StackLayout flexGrow="1">
+                            <Label horizontalAlignment="left" width="50" flexGrow="1" text="{{name}}"/>
+                          </StackLayout>
+                          <StackLayout tap="{{editScheldue}}" flexGrow="1">
+                            <Label horizontalAlignment="right" class="fa" width="30" flexGrow="1" text=""/>
+                          </StackLayout>
+                        </FlexboxLayout>
+
+                        <Repeater items="{{ data }}">
+                          <Repeater.itemsLayout>
+                            <StackLayout class="white-list list" >
+                            </StackLayout>
+                          </Repeater.itemsLayout>
+                          <Repeater.itemTemplate>
+                            <button horizontalAlignment="left" class="btn-select active-btn" text="{{name}}"/>
+                          </Repeater.itemTemplate>
+                        </Repeater>
+
+                        </StackLayout>
+                        </template>
+                        <template key="gray-day" class="gr">
+                          <StackLayout class="list-task">
+                            <FlexboxLayout tap="{{editScheldue}}" class="gray-day day">
+                              <StackLayout flexGrow="1">
+                                <Label horizontalAlignment="left" width="50" flexGrow="1" text="{{name}}"/>
+                              </StackLayout>
+                              <StackLayout flexGrow="1">
+                                <Label horizontalAlignment="right" class="fa" width="30" flexGrow="1" text=""/>
+                              </StackLayout>
+                            </FlexboxLayout>
+                           
+                           
+                            <Repeater items="{{ data }}">
+                              <Repeater.itemsLayout>
+                                <StackLayout class="gray-list list" >
+                                </StackLayout>
+                              </Repeater.itemsLayout>
+                              <Repeater.itemTemplate>
+                                <button horizontalAlignment="left" class="btn-select active-btn" text="{{name}}"/>
+                              </Repeater.itemTemplate>
+                         
+                            </Repeater>
+                          </StackLayout>
+                        </template>
+
+                        <!--<template key="white-list">
+                                   <StackLayout class="white-list list">
+                                    <button horizontalAlignment="left" class="btn-select active-btn" text="{{name}}"/>
+                                   </StackLayout>
+                                 </template>
+                                 <template key="gray-list">
+                                    <StackLayout class="gray-list list">
+                                      <button horizontalAlignment="left" class="btn-select active-btn" text="{{name}}"/>
+                                    </StackLayout>
+                                  </template>-->
+
+                      </lv:RadListView.itemTemplates>
+                    </lv:RadListView>
+
+
+
+
+                  </StackLayout>
+                </StackLayout>
+              </StackLayout>
+            </GridLayout>
+          </ScrollView>
+          <StackLayout row="2" orientation="vertical" height="0" class="button-big" tap="{{save}}">
+            <StackLayout height="100%" orientation="horizontal" horizontalAlignment="center">
+              <Label verticalAlignment="center" text="Готово" id="text" />
+              <!-- <Label verticalAlignment="center" class="fa" text="" id="icon"/>-->
+            </StackLayout>
+          </StackLayout>
+        </GridLayout>
+      </GridLayout>
+    </Page>

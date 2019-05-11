@@ -1,5 +1,5 @@
-<GridLayout loaded="onLoaded" height="100%" width="100%" xmlns:gauge="nativescript-ui-gauge">
-		<gauge:RadRadialGauge >
+<GridLayout loaded="onLoaded" height="100%" width="100%" text="10" xmlns:gauge="nativescript-ui-gauge">
+		<gauge:RadRadialGauge  class="progress-setter" >
 			<gauge:RadRadialGauge.scales>
 				<gauge:RadialScale startAngle="-90" sweepAngle="360">
 					<gauge:RadialScale.scaleStyle>
@@ -11,13 +11,13 @@
 					<gauge:RadialScale.indicators>
 						<gauge:RadialBarIndicator minimum="0" maximum="100">
 							<gauge:RadialBarIndicator.indicatorStyle>
-								<gauge:BarIndicatorStyle fillColor="{{ fillBackgroundColor }}" cap="Round" barWidth="0.1">
+								<gauge:BarIndicatorStyle fillColor="#FEEFE3" cap="Round" barWidth="0.1">
 								</gauge:BarIndicatorStyle>
 							</gauge:RadialBarIndicator.indicatorStyle>
 						</gauge:RadialBarIndicator>
 						<gauge:RadialBarIndicator minimum="0" maximum="{{ progress }}" id="pr" isAnimated="true">
 							<gauge:RadialBarIndicator.indicatorStyle>
-								<gauge:BarIndicatorStyle fillColor="{{ fillColor }}" cap="Round" barWidth="0.1">
+								<gauge:BarIndicatorStyle fillColor="#FCD0AD" cap="Round" barWidth="0.1">
 								</gauge:BarIndicatorStyle>
 							</gauge:RadialBarIndicator.indicatorStyle>
 						</gauge:RadialBarIndicator>

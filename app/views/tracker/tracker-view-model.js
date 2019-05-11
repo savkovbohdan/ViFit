@@ -126,17 +126,12 @@ function createViewModel() {
             });
 
     }
+    
     function ld(){
         viewModel.set('is_tracking', !viewModel.is_tracking);
         if (viewModel.is_tracking) {
-      //      mapView.clear();
             startTime = Date.now();
             timerOne = setInterval(timerTrackerUpadete, 10);
-           // marker = new mapsModule.Marker();
-           // polyline = new mapsModule.Polyline();
-          //  marker.position = mapsModule.Position.positionFromLatLng(viewModel.latitude, viewModel.longitude);
-          //  marker.userData = { index: 1 };
-          //  mapView.addMarker(marker);
             viewModel.set('distance', total_distance);
             viewModel.set('steps', total_steps);
             geolocation.getCurrentLocation(

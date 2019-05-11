@@ -1,0 +1,90 @@
+.page {
+    background:#FEFCFA;
+}
+
+.card-white {
+    background: #fff;
+    border-radius: 20;
+}
+.descriptiot {
+    color: #838FAD;
+}
+
+.custom-shadow {
+    background: linear-gradient(-45deg, rgba(255,255,255, 0.0),rgba(192,191,208, 0.2), rgba(255,255,255, 0.0));
+   vertical-align: center;
+   width: 100%;
+   height: 100%;
+   border-radius: 20;
+}
+
+.animate-circle-bg {
+    height: 1000dp;
+    width: 1000dp;
+    border-radius: 500;
+    transform: translate(-250, -500);
+    opacity: 1;
+    background: linear-gradient(to bottom, #F6F8FF, #F6F8FF, #FEF4EB);
+}
+
+
+.btn-select {
+    background: #EAEEFF;
+    height:40dp;
+    padding-left: 15;
+    padding-right: 15;
+    border-radius: 5;
+    border-color: transparent;
+    border-width: 1;
+    color:#838FAD;
+    font-size: 14;
+    text-transform: none;
+}
+
+
+.active-btn{
+    background: #83A7FF;
+    color: #fff;
+}
+
+.day Label{
+    color: #0A0A0D;
+    font-size: 13;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 20;
+    margin-bottom: 20;
+    margin-left: 25;
+    margin-right: 25;
+}
+
+.day .fa {
+    margin-top: 15;
+    height: 30;
+    width: 30;
+    background: #83A7FF;
+    color: #fff;
+    text-align: center;
+    padding-top: 8.5;
+    font-size: 12;
+    border-radius: 15;
+}
+
+.list {
+    padding-bottom: 20;
+    padding-left: 25;
+    padding-right: 25;
+}
+
+.gray-day, .gray-list {
+    background: #F4F5F8;
+}
+
+.list .chek-box  {
+    margin-right: 15dp;
+    margin-bottom: 15;
+}
+
+.list .btn-select {
+    margin-bottom: 15;
+}

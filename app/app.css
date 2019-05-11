@@ -49,6 +49,9 @@ components that have the btn class name.
     font-size: 15dp;
 }
 
+
+
+
 .pager {
     font-size: 18;
     font-weight: 600;
@@ -56,10 +59,11 @@ components that have the btn class name.
 }
 
 .h1 {
-    font-size: 18;
+    font-size: 22;
     text-align: left;
     font-weight: 600;
     color: #0A0A0D;
+    margin-top:-4;
 }
 
 .text-blue {
@@ -214,7 +218,7 @@ components that have the btn class name.
 
 
 .action-bar {
-    background: #fff;
+   /* background: #fff;*/
 }
 
 .menu-hamburger{
@@ -286,4 +290,33 @@ components that have the btn class name.
 .progress-icons .fa {
     padding-bottom: 1;
 
+}
+
+.animate-circle-bg {
+    height: 1000dp;
+    width: 1000dp;
+    border-radius: 500;
+    transform: translate(-500, -500);
+    opacity: 0.7;
+    background: linear-gradient(to bottom, #F6F8FF, #F6F8FF, #FEF4EB);
+}
+
+.chek-box {
+    font-family: icomoon;
+    border-width: 3;
+    border-color: #8AB6FD;
+    height: 25;
+    width: 25;
+    border-radius: 12.5;
+    font-size: 0;
+    color: #fff;
+    text-align: center;
+}
+
+
+.chek-box-chek {
+    background: #8AB6FD;
+    font-size: 8;
+    padding-top: 6dp;
+    
 }

@@ -1,15 +1,6 @@
 .page {
     background:#FEFCFA;
 }
-
-.animate-circle-bg {
-    height: 1000dp;
-    width: 1000dp;
-    border-radius: 500;
-    transform: translate(-500, -500);
-    opacity: 0.7;
-    background: linear-gradient(to bottom, #F6F8FF, #F6F8FF, #FEF4EB);
-}
 .tabview {
     tab-text-color: #D7D6E6;
     selected-tab-text-color:#83A7FF;
@@ -91,23 +82,6 @@
 
 
 /*scheduleWorkouts*/
-
-.chek-box {
-    border-width: 3;
-    border-color: #8AB6FD;
-    height: 25;
-    width: 25;
-    border-radius: 12.5;
-    font-size: 0;
-    color: #fff;
-}
-
-.chek-box-chek {
-    background: #8AB6FD;
-    font-size: 8;
-    padding-top: 6dp;
-    
-}
 
 .workouts-list{
     background: #fff;
