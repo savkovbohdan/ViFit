@@ -8,16 +8,17 @@
 					</gauge:RadialScale.scaleStyle>
 
 
-					<gauge:RadialScale.indicators>
+					<gauge:RadialScale.indicators >
 						<gauge:RadialBarIndicator minimum="0" maximum="100">
 							<gauge:RadialBarIndicator.indicatorStyle>
-								<gauge:BarIndicatorStyle fillColor="#FEEFE3" cap="Round" barWidth="0.1">
+								<gauge:BarIndicatorStyle fillColor="rgba(249, 182, 143, 0.3)"  cap="Round" barWidth="0.07">
 								</gauge:BarIndicatorStyle>
 							</gauge:RadialBarIndicator.indicatorStyle>
 						</gauge:RadialBarIndicator>
-						<gauge:RadialBarIndicator minimum="0" maximum="{{ progress }}" id="pr" isAnimated="true">
+
+						<gauge:RadialBarIndicator minimum="0" maximum="{{progress}}" id="pr" isAnimated="true">
 							<gauge:RadialBarIndicator.indicatorStyle>
-								<gauge:BarIndicatorStyle fillColor="#FCD0AD" cap="Round" barWidth="0.1">
+								<gauge:BarIndicatorStyle fillColor="#F9B68F" cap="Round" barWidth="0.07">
 								</gauge:BarIndicatorStyle>
 							</gauge:RadialBarIndicator.indicatorStyle>
 						</gauge:RadialBarIndicator>

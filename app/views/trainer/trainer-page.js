@@ -1,9 +1,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const HomeViewModel = require("./trainer-view-model");
 var page;
-const application = require("tns-core-modules/application");
 var mainViewModel;
 var imageCache = require("nativescript-web-image-cache");
+const application = require("tns-core-modules/application");
 var platform = require("tns-core-modules/platform");
 
 function onNavigatingTo(args) {
@@ -24,7 +24,7 @@ function onNavigatingTo(args) {
 
 
 function loaded(args) {
-    if (application.android && platform.device.sdkVersion >= '21') {
+  /*  if (application.android && platform.device.sdkVersion >= '21') {
         var View = android.view.View;
         var window = application.android.startActivity.getWindow();
         // set the status bar to Color.Transparent
@@ -39,7 +39,7 @@ function loaded(args) {
             | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    }
+    }*/
 }
 exports.loaded = loaded;
 

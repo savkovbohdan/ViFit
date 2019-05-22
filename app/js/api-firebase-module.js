@@ -2,6 +2,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 firebaseN = require("nativescript-plugin-firebase");
 var frame = require("tns-core-modules/ui/frame");
 const appSettings = require("application-settings");
+const application = require("tns-core-modules/application");
+var platform = require("tns-core-modules/platform");
 var firebase = require("nativescript-plugin-firebase");
 
 /* Database */
@@ -139,3 +141,41 @@ frame.topmost().navigate({
   moduleName: "views/schedule/schedule-page",
   animated: false});
 }
+
+module.exports.navigateToExercises = (model, data) => {
+  frame.topmost().navigate({
+    context: {model: model, data: data},
+    moduleName: "views/exercises/exercises-page",
+    animated: false});
+  }
+
+
+
+  module.exports.navigateToExercise = (exercises) => {
+    frame.topmost().navigate({
+      context: {exercises: exercises},
+      moduleName: "views/exercise/exercise-page",
+      animated: false});
+    }
+  
+  
+
+  module.exports.screenSettings = () => {
+       if (application.android && platform.device.sdkVersion >= '21') {
+      //  var View = android.view.View;
+        var window = application.android.startActivity.getWindow();
+        // set the status bar to Color.Transparent
+  
+        //   window.setStatusBarColor(0x000000);
+/*
+        var decorView = window.getDecorView();
+        decorView.setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+            | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);*/
+        window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+  }

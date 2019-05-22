@@ -18,7 +18,10 @@
                     </FlexboxLayout>
                     <StackLayout row="1">
 
-                        <lv:RadListView class="ml-25 mr-25 main-rad" items="{{ scheduleWorkouts }}" itemTemplateSelector="{{ templateSelectorFunction }}">
+                        <lv:RadListView  class="ml-25 mr-25 main-rad" items="{{ scheduleWorkouts }}" itemTemplateSelector="{{ templateSelectorFunction }}">
+                          <lv:RadListView.listViewLayout>
+                              <lv:ListViewLinearLayout scrollDirection="Vertical"/>
+                          </lv:RadListView.listViewLayout>
                             <lv:RadListView.itemTemplate>
                                 <GridLayout>
                                     <StackLayout class="custom-shadow">
@@ -122,7 +125,6 @@
                                         <FlexboxLayout>
                                             <GridLayout class="bg-red" height="100%" minWidth="25" width="25" flexGrow="1" alignSelf="stretch">
                                                 <Label class="{{isComplate == true ? 'chek-box chek-box-chek' : 'chek-box'}}" text=""/>
-                                                
                                                 <StackLayout class="{{isFirst != true ? 'line-chek-top'  : 'no-class' }}"/>
                                                 <StackLayout class="{{isLast != true ? 'line-chek-bottom' : 'no-class' }}"/>
                                             </GridLayout>
@@ -133,7 +135,6 @@
                                                         <Label class="fa" text=""/>
                                                         <Label text="{{powerPoints}}"/>
                                                     </StackLayout>
-
                                                     <circularProgress:CircularProgressView height="55" width="55" />
                                                 </GridLayout>
 

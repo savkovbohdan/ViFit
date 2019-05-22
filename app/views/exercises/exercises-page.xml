@@ -1,0 +1,110 @@
+<Page class="page" navigatingTo="onNavigatingTo" loaded="loaded" 
+  xmlns:lv="nativescript-ui-listview" 
+  xmlns:svg="@teammaestro/nativescript-svg" 
+  xmlns:circularProgress="components/circular-progress-bar" navigatingTo="onNavigatingTo" loaded="loaded" 
+  xmlns:IC="nativescript-web-image-cache" class="page" 
+  xmlns:VideoPlayer="nativescript-videoplayer" 
+  xmlns="http://www.nativescript.org/tns.xsd">
+  <GridLayout>
+    <AbsoluteLayout>
+      <StackLayout class="animate-circle-bg"/>
+    </AbsoluteLayout>
+    <GridLayout rows="60, *, auto" class="grid-container">
+      <FlexboxLayout orientation="horizontal" width="100%" row="0" class="action-bar">
+        <Label tap="{{navigateBack}}" text="" class="menu-hamburger fa ml-25" fontSize="15" />
+      </FlexboxLayout>
+      <ScrollView class="scroll" width="100%" height="100%" row="1">
+        <GridLayout height="auto" paddingTop="0" paddingBottom="25" paddingLeft="25" paddingRight="25">
+          <StackLayout>
+            <FlexboxLayout paddingTop="10">
+              <Label class="h1" flexGrow="1" alignSelf="center" horizontalAlignment="left" text="{{title}} "/>
+            </FlexboxLayout>
+
+            <StackLayout class="workout-info mt-20" orientation="horizontal">
+              <Label text="" class="fa"/>
+              <Label text="{{fullTime}}"/>
+              <Label text="" class="fa"/>
+              <Label text="{{exercisesCount }}"/>
+            </StackLayout>
+            <GridLayout class="workout-poster mt-25">
+              <IC:WebImage height="100%" width="100%" stretch="aspectFill" placeholder="~/images/jpg/poster.jpg" src="~/images/jpg/poster.jpg"/>
+              <svg:SVGImage src="~/images/svg/border.svg" height="10" width="10" style="horizontal-align: left; vertical-align:top; " />
+              <svg:SVGImage src="~/images/svg/border.svg" rotate="90" height="10" width="10" style="horizontal-align: right; vertical-align:top; " />
+              <svg:SVGImage src="~/images/svg/border.svg" rotate="-90" height="10" width="10" style="horizontal-align: left; vertical-align:bottom; " />
+              <svg:SVGImage src="~/images/svg/border.svg" rotate="-180" height="10" width="10" style="horizontal-align: right; vertical-align:bottom; " />
+
+              <GridLayout minWidth="90" alignSelf="center" height="90" width="90">
+                <StackLayout class="progress-icons progress-background">
+                  <Label class="fa" color="#fff" text=""/>
+                  <Label class="fa" color="#fff" text="+10"/>
+                </StackLayout>
+                <circularProgress:CircularProgressView height="90" width="90" text="" progress="{{progress}}" />
+              </GridLayout>
+            </GridLayout>
+
+            <StackLayout class="custom-shadow mt-25">
+              <StackLayout class="card-white" width="100%" paddingBottom="15" paddingTop="15">
+                <Repeater items="{{ exercises }}">
+                  <Repeater.itemsLayout>
+                    <StackLayout orientation="vertical" />
+                  </Repeater.itemsLayout>
+
+                  <Repeater.itemTemplate>
+
+                    <StackLayout class="ml-20" tap="{{$parents['Repeater'].openVideo}}">
+                      <FlexboxLayout>
+
+                        <StackLayout orientation="horizontal" flexDirection="column" minWidth="25" width="25" flexGrow="1" alignSelf="stretch">
+                          <Label alignSelf="center" class="{{isComplate == true ? 'chek-box chek-box-chek' : 'chek-box'}}" text=""/>
+                        </StackLayout >
+
+                        <FlexboxLayout class=" ml-10 mb-10 mt-10">
+                          <FlexboxLayout alignSelf="center" class="ml-15">
+                            <StackLayout alignSelf="center">
+                              <Label class="workouts-list-title" textWrap="true" width="100%" text="{{name}}"/>
+                              <StackLayout class="workouts-list-icons mt-10" orientation="horizontal">
+                                <Label text="" class="fa"/>
+                                <Label text="{{times + ' мин'}}"/>
+                                <Label text="" class="fa"/>
+                                <Label text="{{setsCount + ' сет'}}"/>
+                              </StackLayout>
+                            </StackLayout>
+                            <GridLayout alignSelf="center" class="full-video-exercises ml-15 mr-20">
+                              <Label class="video-camera fa" text=""/>
+                            </GridLayout>
+                          </FlexboxLayout>
+                        </FlexboxLayout>
+                      </FlexboxLayout>
+                    </StackLayout>
+                  </Repeater.itemTemplate>
+                </Repeater>
+              </StackLayout>
+            </StackLayout>
+          </StackLayout>
+        </GridLayout>
+      </ScrollView>
+
+
+
+      
+    <GridLayout row="0" rowSpan="2" class="popup">
+      <StackLayout class="popup-content">
+        <Button class="close fa" text="" tap="{{popupClose}}"/>
+        <StackLayout class="popup-card-white">
+          <VideoPlayer:Video fill="true" class="video" id="nativeVideoPlayer" controls="true" loop="true" autoplay="false" height="280" src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" />
+        </StackLayout>      
+      </StackLayout>
+    </GridLayout>
+
+
+
+      <StackLayout row="2" orientation="vertical" class="button-big" tap="{{navigateToExercise}}">
+        <StackLayout height="100%" orientation="horizontal" horizontalAlignment="center">
+          <Label verticalAlignment="center" text="Начать тренировку" id="text" />
+          <Label verticalAlignment="center" class="fa" text="" id="icon"/>
+        </StackLayout>
+      </StackLayout>
+    </GridLayout>
+
+  </GridLayout>
+</Page>

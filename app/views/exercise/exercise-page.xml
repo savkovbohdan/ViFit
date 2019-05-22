@@ -1,0 +1,77 @@
+<Page class="page" navigatingTo="onNavigatingTo" loaded="loaded" 
+  xmlns:lv="nativescript-ui-listview" 
+  xmlns:svg="@teammaestro/nativescript-svg" 
+  xmlns:circularProgress="components/circular-progress-bar" navigatingTo="onNavigatingTo" loaded="loaded" 
+  xmlns:IC="nativescript-web-image-cache" class="page" 
+  xmlns:VideoPlayer="nativescript-videoplayer" 
+  xmlns="http://www.nativescript.org/tns.xsd">
+  <GridLayout>
+    <AbsoluteLayout>
+      <StackLayout class="animate-circle-bg"/>
+    </AbsoluteLayout>
+    <GridLayout rows="250, *, auto" class="grid-container">
+      <GridLayout row="0" height="250" class="video-container">
+        <Button class="close fa mt-25 mr-25" text="" tap="{{popupClose}}"/>
+        <StackLayout class="video">
+          <VideoPlayer:Video fill="true" class="video" id="nativeVideoPlayer" controls="false" loop="true" autoplay="true" height="100%" src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" />
+        </StackLayout>
+      </GridLayout>
+
+
+      <StackLayout row="1" verticalAlignment="top">
+        <Label class="h1  ml-25 mr-25 mt-25" text="Название трени"/>
+        <StackLayout class="card-white  ml-25 mr-25 mt-25 mb-25">
+          <GridLayout height="90">
+            <Label text="1" verticalAlignment="center" horizontalAlignment="left" />
+            <GridLayout verticalAlignment="center" horizontalAlignment="center" minWidth="90" alignSelf="center" height="90" width="90">
+              <StackLayout class="progress-icons progress-background">
+                <Label color="#fff" text="10"/>
+                <Label color="#fff" text="сек"/>
+              </StackLayout>
+              <circularProgress:CircularProgressView height="90" width="90" text="" progress="{{progress}}" />
+            </GridLayout>
+            <Label verticalAlignment="center" horizontalAlignment="right" text="1"/>
+          </GridLayout>
+
+           <Label text="sada" color="#000" textAlign="center" horizontalAlignment="center"/>
+        </StackLayout>
+      </StackLayout>
+
+      <StackLayout row="2">
+        <!--next-->
+        <StackLayout class="ml-20" tap="{{$parents['Repeater'].openVideo}}">
+          <FlexboxLayout>
+            <StackLayout orientation="horizontal" flexDirection="column" minWidth="25" width="25" flexGrow="1" alignSelf="stretch">
+              <Label alignSelf="center" class="fa" text=""/>
+            </StackLayout >
+            <FlexboxLayout class=" ml-10 mb-10 mt-10">
+              <FlexboxLayout alignSelf="center" class="ml-15">
+                <StackLayout alignSelf="center">
+                  <Label class="workouts-list-title" textWrap="true" width="100%" text="{{name}}"/>
+                  <StackLayout class="workouts-list-icons mt-10" orientation="horizontal">
+                    <Label text="" class="fa"/>
+                    <Label text="{{times + ' мин'}}"/>
+                    <Label text="" class="fa"/>
+                    <Label text="{{setsCount + ' сет'}}"/>
+                  </StackLayout>
+                </StackLayout>
+                <GridLayout alignSelf="center" class="full-video-exercises ml-15 mr-20">
+                  <Label class="video-camera fa" text=""/>
+                </GridLayout>
+              </FlexboxLayout>
+            </FlexboxLayout>
+          </FlexboxLayout>
+        </StackLayout>
+        <!--next-->
+
+
+        <StackLayout orientation="horizontal">
+          <Button width="50" class="button-big stop-pause fa" color="#fff" text="" tap="{{navigateToExercise}}"/>
+          <Button class="fa" color="#fff" text="" tap="{{navigateToExercise}}"/>
+          <Button class="fa" color="#fff" text="" tap="{{navigateToExercise}}"/>
+        </StackLayout>
+      </StackLayout>
+
+    </GridLayout>
+  </GridLayout>
+</Page>

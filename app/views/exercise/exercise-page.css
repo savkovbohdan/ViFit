@@ -1,0 +1,110 @@
+.page {
+    background:#FEFCFA;
+}
+
+.custom-shadow {
+    background: linear-gradient(-45deg, rgba(255,255,255, 0.0),rgba(192,191,208, 0.2), rgba(255,255,255, 0.0));
+   vertical-align: center;
+   width: 100%;
+   border-radius: 20;
+}
+
+.animate-circle-bg {
+    height: 1000dp;
+    width: 1000dp;
+    border-radius: 500;
+    transform: translate(-250, -500);
+    opacity: 1;
+    background: linear-gradient(to bottom, #F6F8FF, #F6F8FF, #FEF4EB);
+}
+
+
+.card-white {
+    background: #fff;
+    border-radius: 10;
+}
+
+.progress-background {
+    background: #F9B68F;
+    height: 80%;
+    width: 80%;
+    text-align: center;
+    border-radius: 100;
+    margin: 10;
+ 
+}
+
+
+.progress-background  Label {
+    font-size: 16;
+}
+
+
+.close {
+    border-width: 1;
+    border-color: transparent;
+    background: #fff;
+    border-radius: 25;
+    height: 30;
+    width: 30;
+    padding: 0;
+    color:#F9B68F;
+    font-size: 12;
+    margin-bottom: -15;
+    vertical-align: top;
+    horizontal-align:right;
+}
+
+
+.video-container {
+    vertical-align: top;
+}
+
+
+
+/*scheduleWorkouts*/
+
+
+
+
+.workouts-list-title {
+    text-align: left;
+    font-size: 15;
+    color: #0A0A0D;
+    font-weight: 500;
+  
+}
+
+
+.workouts-list-icons Label  {
+    color: #9AA0B1;
+    margin-right: 15;
+    font-size: 12;
+    font-weight: 500;
+}
+
+
+
+
+.workouts-list-icons .fa {
+    margin-right: 5;
+    margin-left: 0;
+    font-size: 14;
+}
+
+.full-video-exercises {
+    background:#8AB6FD;
+    height: 45;
+    width: 45;
+    min-width: 45;
+    border-radius: 5;
+   
+
+}
+
+.full-video-exercises  Label {
+    vertical-align: center;
+    horizontal-align: center;
+    font-size: 10;
+    color: #fff;
+}

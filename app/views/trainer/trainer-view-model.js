@@ -572,8 +572,9 @@ function HomeViewModel() {
     navigateToSchedule: function(){
       api.navigateToSchedule(viewModel);
     },
+
     navigateToExercises:function (args){
-      console.log(args.object.bindingContext)
+      api.navigateToExercises(viewModel, args.object.bindingContext);
     }
   });
   viewModel.set("hBgheader", (platform.screen.mainScreen.heightDIPs * 0.40));
