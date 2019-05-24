@@ -42,14 +42,15 @@
                                                 <circularProgress:CircularProgressView height="55" width="55" text="" prog="30" />
                                             </GridLayout>
 
+
                                             <FlexboxLayout alignSelf="center" class="ml-15">
                                                 <StackLayout alignSelf="center">
                                                     <Label class="workouts-list-title" textWrap="true" width="100%" text="{{name}}"/>
                                                     <StackLayout class="workouts-list-icons mt-10" orientation="horizontal">
                                                         <Label text="" class="fa"/>
-                                                        <Label text="30 мин"/>
+                                                        <Label text="{{ time + ' мин' }}"/>
                                                         <Label text="" class="fa"/>
-                                                        <Label text="12"/>
+                                                        <Label text="{{ exerciseCount }}"/>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </FlexboxLayout>
@@ -142,10 +143,10 @@
                                                     <StackLayout alignSelf="center">
                                                         <Label class="workouts-list-title" textWrap="true" width="100%" text="{{name}}"/>
                                                         <StackLayout class="workouts-list-icons mt-10" orientation="horizontal">
-                                                            <Label text="" class="fa"/>
-                                                            <Label text="30 мин"/>
-                                                            <Label text="" class="fa"/>
-                                                            <Label text="12"/>
+                                                        <Label text="" class="fa"/>
+                                                        <Label text="{{ time + ' мин' }}"/>
+                                                        <Label text="" class="fa"/>
+                                                        <Label text="{{ exerciseCount }}"/>
                                                         </StackLayout>
                                                     </StackLayout>
                                                 </FlexboxLayout>

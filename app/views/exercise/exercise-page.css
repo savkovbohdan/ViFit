@@ -108,3 +108,59 @@
     font-size: 10;
     color: #fff;
 }
+
+.info-blue-radius {
+    background: #8AB6FD;
+    color: #fff;
+    font-size: 16;
+    height: 50;
+    width: 50;
+    border-radius: 50;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 12;
+    margin: 25;
+}
+
+.progress-icons .time-e-ed {
+    font-size: 12!important;
+    margin-top: -5;
+}
+
+
+.progress-icons .time-e {
+    font-size: 24!important;
+
+}
+
+.equements {
+    font-size: 16;
+    font-weight: 600;
+    color: #F9B68F;
+}
+
+
+.next-ex {
+    color: #83A7FF;
+   
+    width: 100%;
+    text-align: right;
+
+}
+
+.stop-pause {
+    height: 60;
+    width: 85;
+    border-radius: 5;
+}
+
+.btn-playar-mins{
+    border-color: transparent;
+    border-width: 1;
+    background-color: transparent;
+    color: #8AB6FD;;
+   width: 30;
+   padding: 0;
+    margin-left: 35;
+
+}

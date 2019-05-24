@@ -1,4 +1,4 @@
-<Page class="page" navigatingTo="onNavigatingTo" loaded="loaded" 
+<Page class="page" navigatingTo="onNavigatingTo" loaded="loaded" unloaded="unloaded"
   xmlns:lv="nativescript-ui-listview" 
   xmlns:svg="@teammaestro/nativescript-svg" 
   xmlns:circularProgress="components/circular-progress-bar" navigatingTo="onNavigatingTo" loaded="loaded" 
@@ -11,67 +11,80 @@
     </AbsoluteLayout>
     <GridLayout rows="250, *, auto" class="grid-container">
       <GridLayout row="0" height="250" class="video-container">
-        <Button class="close fa mt-25 mr-25" text="" tap="{{popupClose}}"/>
+        <Button class="close fa mt-25 mr-25" text="" tap="{{navigateBack}}"/>
         <StackLayout class="video">
-          <VideoPlayer:Video fill="true" class="video" id="nativeVideoPlayer" controls="false" loop="true" autoplay="true" height="100%" src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" />
+          <VideoPlayer:Video fill="true" mute="true" class="video" id="nativeVideoPlayer" controls="false" loop="true" autoplay="true" height="100%" src="{{exercise.video}}" />
         </StackLayout>
       </GridLayout>
 
-
-      <StackLayout row="1" verticalAlignment="top">
-        <Label class="h1  ml-25 mr-25 mt-25" text="Название трени"/>
-        <StackLayout class="card-white  ml-25 mr-25 mt-25 mb-25">
+      <StackLayout row="1"  verticalAlignment="top">
+        <Label class="h1  ml-25 mr-25 mt-20 mb-20" fontSize="18" text="{{exercise.name}}"/>
+        <StackLayout orientation="horizontal" class="card-white  ml-25 mr-25" height="100%">
+          <StackLayout verticalAlignment="center">
           <GridLayout height="90">
-            <Label text="1" verticalAlignment="center" horizontalAlignment="left" />
+            <Label class="info-blue-radius"  text="{{(setIndex+1) + '/' +  exercise.setsCount}}" verticalAlignment="center" horizontalAlignment="left" />
             <GridLayout verticalAlignment="center" horizontalAlignment="center" minWidth="90" alignSelf="center" height="90" width="90">
               <StackLayout class="progress-icons progress-background">
-                <Label color="#fff" text="10"/>
-                <Label color="#fff" text="сек"/>
+                <Label color="#fff"  class="time-e" text="{{secondsProgress}}"/>
+                <Label color="#fff"   class="time-e-ed" text="сек"/>
               </StackLayout>
               <circularProgress:CircularProgressView height="90" width="90" text="" progress="{{progress}}" />
             </GridLayout>
-            <Label verticalAlignment="center" horizontalAlignment="right" text="1"/>
+            <Label class="info-blue-radius" verticalAlignment="center" horizontalAlignment="right" text="{{repeatExercise + 'x'}}"/>
           </GridLayout>
+        
+     
+     <StackLayout  visibility="{{exercise.equements ? 'visible' : 'collapsed'}}" orientation="horizontal" class="mt-10 mr-25 ml-25"  horizontalAlignment="center">
+       <Label class="equements fa" marginRight="10" textAlign="center" text="" />
+       <Label class="equements"  marginTop="-3" textAlign="center" text="{{exercise.equements}}" />
+      </StackLayout>
+      
+    </StackLayout>
 
-           <Label text="sada" color="#000" textAlign="center" horizontalAlignment="center"/>
         </StackLayout>
+
       </StackLayout>
 
-      <StackLayout row="2">
+      <StackLayout row="2" class="mt-20">
+       
         <!--next-->
-        <StackLayout class="ml-20" tap="{{$parents['Repeater'].openVideo}}">
+        <StackLayout  class="mr-25 ml-25" tap="{{next}}">
           <FlexboxLayout>
             <StackLayout orientation="horizontal" flexDirection="column" minWidth="25" width="25" flexGrow="1" alignSelf="stretch">
-              <Label alignSelf="center" class="fa" text=""/>
+              <Label verticalAlignment="center" alignSelf="center" class="fa next-ex" text=""/>
             </StackLayout >
-            <FlexboxLayout class=" ml-10 mb-10 mt-10">
+            <FlexboxLayout class=" ml-10">
               <FlexboxLayout alignSelf="center" class="ml-15">
                 <StackLayout alignSelf="center">
-                  <Label class="workouts-list-title" textWrap="true" width="100%" text="{{name}}"/>
+                  <Label class="workouts-list-title" textWrap="true" width="100%" text="{{nextExercise.name}}"/>
                   <StackLayout class="workouts-list-icons mt-10" orientation="horizontal">
                     <Label text="" class="fa"/>
-                    <Label text="{{times + ' мин'}}"/>
+                    <Label text="{{nextExercise.times + ' мин'}}"/>
                     <Label text="" class="fa"/>
-                    <Label text="{{setsCount + ' сет'}}"/>
+                    <Label text="{{nextExercise.setsCount + ' сет'}}"/>
+                    <Label text="" class="fa"/>
+                    
+                    <Label text="{{nextExercise.equements}}"/>
+
                   </StackLayout>
                 </StackLayout>
-                <GridLayout alignSelf="center" class="full-video-exercises ml-15 mr-20">
+               
+               <!-- <GridLayout alignSelf="center" class="full-video-exercises ml-15">
                   <Label class="video-camera fa" text=""/>
-                </GridLayout>
+                </GridLayout>-->
               </FlexboxLayout>
             </FlexboxLayout>
           </FlexboxLayout>
         </StackLayout>
         <!--next-->
-
-
-        <StackLayout orientation="horizontal">
-          <Button width="50" class="button-big stop-pause fa" color="#fff" text="" tap="{{navigateToExercise}}"/>
-          <Button class="fa" color="#fff" text="" tap="{{navigateToExercise}}"/>
-          <Button class="fa" color="#fff" text="" tap="{{navigateToExercise}}"/>
-        </StackLayout>
+        <GridLayout orientation="horizontal" class="ml-25 mr-25 mt-20 mb-20" >
+          <Button  horizontalAlignment="left" class="button-big stop-pause fa" color="#fff" text="{{!pauseState ? '' :  '' }}" tap="{{!pauseState ? pause : play}}"/>
+          <StackLayout  orientation="horizontal"  horizontalAlignment="right">
+            <Button class="fa btn-playar-mins" text="" tap="{{navigateToExercise}}"/>
+            <Button  fontWeight="900" class="fa btn-playar-mins" text="" tap="{{navigateToExercise}}"/>
+          </StackLayout>
+        </GridLayout>
       </StackLayout>
-
     </GridLayout>
   </GridLayout>
 </Page>

@@ -2,6 +2,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var api = require("../../js/api-firebase-module");
+var gF = require("../../js/global-functions");
 var observableModule = require("tns-core-modules/data/observable");
 var ObservableArray = require("tns-core-modules/data/observable-array").ObservableArray;
 var enums = require("tns-core-modules/ui/enums");
@@ -383,6 +384,7 @@ function HomeViewModel() {
       var removed = days.splice(0, date.getDay());
       days = days.concat(removed);
       for (key in days) {
+        console.log(key);
         if (key == 3)
           break;
         nameDay = "error";
@@ -399,7 +401,6 @@ function HomeViewModel() {
           name: nameDay,
           type: "nameDay"
         }
-        days[key];
         flagWorkouts = false
         if (typeof data[days[key]] != "undefined") {
           viewModel.scheduleWorkouts.push(titleDay);
@@ -407,7 +408,7 @@ function HomeViewModel() {
           tasks = data[days[key]];
           for (task in tasks) {
             if (typeof tasks[task].idWorkout != "undefined") {
-              let taskTemp = null;
+              taskTemp = {};
               userWork = [...viewModel.userModel.userWorkouts];
               index = userWork.findIndex(x => x.key == tasks[task].idWorkout);
               if (index != -1) {
@@ -415,26 +416,24 @@ function HomeViewModel() {
               taskTemp.powerPoints = "+10"
               taskTemp.type = "workout";
               uW = viewModel.userModel.data.workouts;
-              for(uWKey in uW){
-                //console.log(uW[uWKey]);
-                if(typeof uW[uWKey].idWorkout != "undefined" 
-                && uW[uWKey].idWorkout == tasks[task].idWorkout
-                && uW[uWKey].days != "undefined"){
-                  for(daysW in uW[uWKey].days){
-                    if(typeof uW[uWKey].days[daysW].exercises != "undefined"){
-                      if(typeof userWork[index].days != "undefined" && 
-                         typeof userWork[index].days[daysW] != "undefined"  &&
-                         typeof userWork[index].days[daysW].exercises != "undefined" ){
-                            var progress = Object.keys(uW[uWKey].days[daysW].exercises).length * 100 / Object.keys(userWork[index].days[daysW].exercises).length;
-                            taskTemp.progress = progress;
-                         }
-                    }
-                  }
-                  break;
+              var infoWorkout =  Object.assign({}, gF.getCurrentWorkout(tasks[task].idWorkout, Object.assign({}, taskTemp),  Object.assign({}, uW)));
+              if(infoWorkout != null){
+
+
+                if(key == 0){
+                  console.log("key " + key);
+                  taskTemp.progress = ((infoWorkout.countComplateExercise) / infoWorkout.countExercise * 100);
+                  taskTemp.isComplate = infoWorkout.isComplate;
+                }else {
+                  taskTemp.progress  = 0;
+                  taskTemp.isComplate = false;
                 }
+                taskTemp.time = infoWorkout.timeWorkout;
+                taskTemp.exerciseCount = infoWorkout.countExercise;
+
               }
-             
-                taskTemp.isFirst = false;
+
+              taskTemp.isFirst = false;
                 taskTemp.isLast = false;
                 viewModel.scheduleWorkouts.push(Object.assign({}, taskTemp));
                 flagWorkouts = true;

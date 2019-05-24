@@ -22,6 +22,15 @@ module.exports.getUserData = getUserData;
 
 module.exports.setUserData = setUserData;
 
+
+
+module.exports.setUserDataUrl = (url, data) => {
+  return firebase.update(
+    '/users/' + appSettings.getString("useruid") + '/' + url,
+    data
+  )
+}
+
 module.exports.getUserWorkouts  = () => {
   return firebase.getValue('/users/' + appSettings.getString("useruid") + "/workouts");
 }
@@ -37,6 +46,8 @@ module.exports.removeUserData  = (url) => {
 module.exports.pushUserData  = (url ,data) => {
   return firebase.push('/users/' + appSettings.getString("useruid") + "/"  + url, data);
 }
+
+
 
 
 
@@ -151,9 +162,9 @@ module.exports.navigateToExercises = (model, data) => {
 
 
 
-  module.exports.navigateToExercise = (exercises) => {
+  module.exports.navigateToExercise = (exercises, userData) => {
     frame.topmost().navigate({
-      context: {exercises: exercises},
+      context: {exercises: exercises, userData: userData},
       moduleName: "views/exercise/exercise-page",
       animated: false});
     }

@@ -17,11 +17,9 @@ function onNavigatingTo(args) {
     mainViewModel.mainContext = context.model;
     mainViewModel.info = context.data;
     mainViewModel.run();
-};
-
+}
 function loaded(args){
   
 }
-
 exports.loaded = loaded;
 exports.onNavigatingTo = onNavigatingTo;

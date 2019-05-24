@@ -14,15 +14,19 @@ function onNavigatingTo(args) {
     page.actionBarHidden = true;
     mainViewModel.page = page;
     var context = page.navigationContext;
+    mainViewModel.userData = context.userData;
     mainViewModel.exercises = context.exercises;
-    mainViewModel.run();
 };
 
 
-
 function loaded(args){
-  
+    mainViewModel.run();
+}
+
+function unloaded(args){
+    mainViewModel.pause();
 }
 
 exports.loaded = loaded;
+exports.unloaded = unloaded;
 exports.onNavigatingTo = onNavigatingTo;
