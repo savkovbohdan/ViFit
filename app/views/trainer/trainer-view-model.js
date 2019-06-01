@@ -22,30 +22,13 @@ function HomeViewModel() {
     tabsName: ["Тренировки", "Магазин", "Статистика", "Награды"],
     indexCard: 0,
     cardName: "name",
+    complateDateCount: 0,
+    daysCount:0,
     userWorkouts: {},
     userModel: {},
     scheduleWorkouts: new ObservableArray(),
     onSelectedIndex: function (args) {
       viewModel.setTabText(args);
-    },
-    tabLoaded: function (args) {
-      setTimeout(() => {
-        viewModel.setTabText(args);
-      }, 1);
-    },
-    setTabText: function (args) {
-      viewModel.page.runAgainstClasses('tab', function (elem) {
-        if (elem.classList.contains('active-tab')) {
-          elem.classList.remove('active-tab');
-          str = elem.title;
-        //  console.log("text tab: " + str.substr(-20, 1));
-
-          elem.title = str.substr(-20, 1);
-        }
-      });
-      el = viewModel.page.getElementsByClassName('tab')[args.object.selectedIndex];
-      el.classList.add('active-tab');
-      el.title += '\n' + viewModel.tabsName[args.object.selectedIndex];
     },
     onCardLoaded: function () {
       var i = 0;
@@ -55,6 +38,8 @@ function HomeViewModel() {
         if (i == 0) {
           elem.classList.add('card-first');
           viewModel.cardName = elem.bindingContext.name;
+          viewModel.complateDateCount = elem.bindingContext.complateDateCount;
+          viewModel.daysCount = elem.bindingContext.daysCount;
         }
         if (i == 1) {
           elem.classList.add('card-second');
@@ -75,6 +60,8 @@ function HomeViewModel() {
         i++;
       }
     },
+
+
     onTextChange: function () {
       screen = platform.screen;
       scale = screen.mainScreen.scale;
@@ -83,6 +70,8 @@ function HomeViewModel() {
         if (viewModel.cardName == viewModel.page.getElementsByClassName("card-first")[0].bindingContext.name)
           return false
         viewModel.cardName = viewModel.page.getElementsByClassName("card-first")[0].bindingContext.name;
+        viewModel.complateDateCount =  viewModel.page.getElementsByClassName("card-first")[0].bindingContext.complateDateCount;
+        viewModel.daysCount =  viewModel.page.getElementsByClassName("card-first")[0].bindingContext.daysCount;
       }
       if (typeof viewModel.userModel.userWorkouts == "undefined" || typeof el == "undefined")
         return false
@@ -119,8 +108,7 @@ function HomeViewModel() {
         args.view.bindingContext.prevDeltaX = 0;
       }
       var delta = (args.deltaX < args.view.bindingContext.prevDeltaX) ? -1 : 1;
-      // args.object.translateX += args.deltaX - args.view.bindingContext.prevDeltaX;
-      //  args.view.bindingContext.prevDeltaX = args.deltaX;  
+      
       if (args.state == 3) {
         if (args.deltaX < 0) {
           if (typeof second !== "undefined") {
@@ -263,7 +251,6 @@ function HomeViewModel() {
           if (typeof hidden[0] !== "undefined") {
             viewModel.indexCard--;
           //  console.log(viewModel.indexCard);
-
             if (typeof hidden[0] !== "undefined") {
               hidden[0].classList.add("card-first");
               hidden[0].classList.remove("card-hidden");
@@ -337,13 +324,10 @@ function HomeViewModel() {
           duration: 600,
           curve: enums.AnimationCurve.easeInOut
         })
-
         api.pushStatistics(text, statType);
         powerPoints = 0
         if(typeof viewModel.userModel.data.powerPoints != "undefined")
           powerPoints =  parseInt(viewModel.userModel.data.powerPoints);
-  
-  
         if(typeof args.object.bindingContext.powerPoints != "undefined"){
           powerPoints += parseInt(args.object.bindingContext.powerPoints);
           api.updatePowerPoints(powerPoints);
@@ -364,17 +348,11 @@ function HomeViewModel() {
       if (typeof viewModel.userModel.userWorkouts == "undefined")
         return false;
       var temp = [];
-      // temp.push({ userWorkouts: viewModel.userModel.userWorkouts });
-      // temp[0].type = "first";
       viewModel.scheduleWorkouts = new ObservableArray();
       viewModel.scheduleWorkouts.push({
         userWorkouts: viewModel.userModel.userWorkouts,
         type: "first"
       })
-      //  console.log(temp);
-      // viewModel.scheduleWorkouts = temp;
-      // if(typeof viewModel.userModel.info.scheduleWorkouts == "undefined")
-      //return false;
       if (typeof viewModel.userModel.data.scheduleWorkouts != "undefined")
         data = viewModel.userModel.data.scheduleWorkouts;
       else data = [];
@@ -418,10 +396,7 @@ function HomeViewModel() {
               uW = viewModel.userModel.data.workouts;
               var infoWorkout =  Object.assign({}, gF.getCurrentWorkout(tasks[task].idWorkout, Object.assign({}, taskTemp),  Object.assign({}, uW)));
               if(infoWorkout != null){
-
-
                 if(key == 0){
-                  console.log("key " + key);
                   taskTemp.progress = ((infoWorkout.countComplateExercise) / infoWorkout.countExercise * 100);
                   taskTemp.isComplate = infoWorkout.isComplate;
                 }else {
@@ -430,9 +405,7 @@ function HomeViewModel() {
                 }
                 taskTemp.time = infoWorkout.timeWorkout;
                 taskTemp.exerciseCount = infoWorkout.countExercise;
-
               }
-
               taskTemp.isFirst = false;
                 taskTemp.isLast = false;
                 viewModel.scheduleWorkouts.push(Object.assign({}, taskTemp));
@@ -478,22 +451,16 @@ function HomeViewModel() {
                 statisticsType: tasks[task].type,
               }
               viewModel.scheduleWorkouts.push(taskTemp);
-            }
-            
+            }       
           }
         }
-
         var indexLastInDay = viewModel.scheduleWorkouts.length - 1;
-
-    
-
         if (typeof viewModel.scheduleWorkouts.getItem(indexFirstInDay) != "undefined") {
           var t = viewModel.scheduleWorkouts.getItem(indexFirstInDay);
           t.isFirst = true;
         
           viewModel.scheduleWorkouts.setItem(indexFirstInDay, t)
         }
-
         if (typeof viewModel.scheduleWorkouts.getItem(indexLastInDay) != "undefined") {
           var t = viewModel.scheduleWorkouts.getItem(indexLastInDay);
           t.isLast = true;
@@ -506,7 +473,6 @@ function HomeViewModel() {
     updateData: function () {
       if (typeof viewModel.userModel.userWorkouts != "undefined" && typeof viewModel.userModel.data != "undefined") {
         appSettings.setString("userModel", JSON.stringify(viewModel.userModel));
-        console.log("Обновление");
         viewModel.indexCard = 0;
         viewModel.taskGenerator();
         setTimeout(function () {
@@ -523,7 +489,6 @@ function HomeViewModel() {
       }
       var temp = [];
       var i = 0;
-      
       for (var key in data.value.workouts) {
         console.log(1);
         api.getWorkout(data.value.workouts[key].idWorkout).then(workoutData => {
@@ -532,8 +497,18 @@ function HomeViewModel() {
             if(typeof workoutData.value.posters != "undefined" && typeof workoutData.value.posters[0] != "undefined"){
               workoutData.value.poster = "https://firebasestorage.googleapis.com/v0/b/vifit-1e403.appspot.com/o/" +  workoutData.value.posters[0].replace("/","%2F").replace("/","%2F") + "?alt=media";
             }
+
+            if(typeof data.value.workouts[key].days != "undefined")
+              workoutData.value.complateDateCount = Object.keys(data.value.workouts[key].days).length; 
+            else 
+               workoutData.value.complateDateCount = 0;
+           
+               if(typeof workoutData.value.days != "undefined")
+                  workoutData.value.daysCount = Object.keys(workoutData.value.days).length; 
+              else 
+                  workoutData.value.daysCount = 0;
+
             temp.push(workoutData.value);
- 
           }
           if (i == Object.keys(data.value.workouts).length - 1) {
             viewModel.userModel.userWorkouts = temp;
@@ -547,6 +522,7 @@ function HomeViewModel() {
     },
 
 
+    
     //Загрузка данных для тернировок пользователя
     loadData: function () {
       var userModel = appSettings.getString("userModel");
@@ -572,6 +548,7 @@ function HomeViewModel() {
       api.navigateToSchedule(viewModel);
     },
 
+    
     navigateToExercises:function (args){
       api.navigateToExercises(viewModel, args.object.bindingContext);
     }

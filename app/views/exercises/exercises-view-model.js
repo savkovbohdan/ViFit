@@ -13,9 +13,10 @@ screen = platform.screen;
 scale = screen.mainScreen.scale;
 function HomeViewModel() {
   var viewModel = observableModule.fromObject({
-    exercises: new ObservableArray(),
+    exercises: [],
+    isContinue: false,
     loadExarcises: function () {
-      viewModel.exercises =  new ObservableArray();
+      viewModel.exercises = [];
       searchWorkoutId = viewModel.info.key;
       var url = {};
       api.getWorkout(searchWorkoutId).then((workoutData) => {
@@ -27,9 +28,12 @@ function HomeViewModel() {
               viewModel.set("progress", ((infoWorkout.countComplateExercise) / infoWorkout.countExercise * 100));
               viewModel.set("exercisesCount",  infoWorkout.countExercise);
               viewModel.set("fullTime", infoWorkout.timeWorkout  + "");
-              for(ex in listExercises){
+              if(infoWorkout.countComplateExercise != 0 && infoWorkout.countExercise != infoWorkout.countComplateExercise)
+                viewModel.isContinue = true;
+              /*for(ex in listExercises){
                 viewModel.exercises.push(listExercises[ex]);
-              }
+              }*/
+              viewModel.exercises = infoWorkout.listExercises;
             }
           }
         }).catch((error) => {
@@ -41,6 +45,7 @@ function HomeViewModel() {
     },
     run: function () {
       viewModel.set("title", viewModel.info.name);
+      viewModel.set("poster", viewModel.info.poster);
       viewModel.loadExarcises();
       api.screenSettings();
     },

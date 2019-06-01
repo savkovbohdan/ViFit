@@ -1,4 +1,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
+var api = require("../js/api-firebase-module");
+
+var TextToSpeech = require("nativescript-texttospeech");
+
 /**
  * Поиск не пройденной тренировки и вывод информации о ней
  * @param  {} searchWorkoutId - идентификатор искоемой программы
@@ -15,14 +19,12 @@ module.exports.getCurrentWorkout = (searchWorkoutId, workoutData, data) => {
     var url = {};
     if(typeof workoutData.days == "undefined")
         return null
-
     arrayDays =  Object.entries(workoutData.days);
       arrayDays =  arrayDays.sort((a, b) => {
         if (a[1].index <=  b[1].index)
           return -1;
         else 1
       });
-
       if (typeof data != "undefined") {
         workouts = Object.assign({}, data);
         for (workout in workouts) {
@@ -62,7 +64,20 @@ module.exports.getCurrentWorkout = (searchWorkoutId, workoutData, data) => {
           }
         }
         if(typeof needDay == "undefined" || needDay == null){
-          console.log("Программа завершина");
+          workouts = Object.assign({}, data);
+          for (workout in workouts) {
+            if (typeof workouts[workout].idWorkout != "undefined" && workouts[workout].idWorkout == searchWorkoutId) {
+              if (typeof workouts[workout].days != "undefined") {
+                api.removeUserData("workouts/" + workout + "/days").then(result => {
+                  temp =  Object.assign({}, data);
+                  temp.days = null;
+                  getCurrentWorkout(searchWorkoutId, workoutData, temp);
+                }).catch(error => {
+                  return null;
+                })
+              }else return null;
+            }
+          }
         }else{
           //нашли нужный день
           if(typeof needDay.exercises != "undefined" ){
@@ -111,14 +126,9 @@ module.exports.getCurrentWorkout = (searchWorkoutId, workoutData, data) => {
               exercises[ex][1].url = Object.assign({}, url);
               listExercises.push(exercises[ex][1]);
             }
-            //viewModel.set("progress", ((complateCount) /  viewModel.exercises._array.length * 100));
           }
         }
       }
-    //  viewModel.set("exercisesCount",  viewModel.exercises.length);
-    // viewModel.set("fullTime", (fullTimes/60).toFixed(2)  + "");
-
-
       var isComplate = true;
       if(needUserDay == [] || needUserDay == null || typeof needUserDay.isComplate == "undefined" || needUserDay.isComplate == false){
         isComplate = false;
@@ -133,3 +143,26 @@ module.exports.getCurrentWorkout = (searchWorkoutId, workoutData, data) => {
     }
     return exerciseData;
   }
+  
+  /**
+   * Озвучивание текста
+   * @param  {} text -текст для озвучивания 
+   */
+  module.exports.speak = (text) => {
+     TTS = new TextToSpeech.TNSTextToSpeech();
+     var SpeakOptions = {
+     text: text , /// *** required ***
+     speakRate: 1.1, // optional - default is 1.0
+     pitch: 1.2, // optional - default is 1.0
+     volume: 1.0, // optional - default is 1.0
+     locale: "default",  // optional - default is system locale,
+     finishedCallback: Function // optional
+ }
+
+ TTS.speak(SpeakOptions).then(() => {
+ }, (err) => {
+     console.log(err);
+ });
+}
+
+

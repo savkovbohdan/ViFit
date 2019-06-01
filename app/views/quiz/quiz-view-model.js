@@ -20,7 +20,7 @@ function HomeViewModel() {
       { quastion: "Количество тренировок в неделю:", answer: [1, 2, 3, 4, 5, 6, 7], active: 0, btnType: "number" }
     ],
     answer: [],
-   
+
     next: function (args) {
       if (viewModel.quastionIndex + 1 < viewModel.quiz.length) {
         el = viewModel.page.getElementsByClassName('active-btn')[0];
@@ -37,15 +37,13 @@ function HomeViewModel() {
       el = viewModel.page.getElementsByClassName('active-btn')[0];
       viewModel.answer.push(parseInt(el.quastionIndex));
       var data = {
-        sex: (viewModel.answer[0] ==0 ) ? "man" : "girl",
-        sportLevel:(viewModel.answer[1] + 1),
-        run:  (viewModel.answer[2] == 1) ? true : false,
+        sex: (viewModel.answer[0] == 0) ? "man" : "girl",
+        sportLevel: (viewModel.answer[1] + 1),
+        run: (viewModel.answer[2] == 1) ? true : false,
         workoutsWeek: (viewModel.answer[3] + 1),
         quizIsComplate: true
       }
-
       api.quizComplate(data);
-
     },
     run: function () {
       api.quizIsComplate();
@@ -79,7 +77,6 @@ function HomeViewModel() {
                   el.src = qz.images[q];
                 }
               }
-
               el.animate({
                 translate: { x: 300, y: 0 },
                 duration: 300,
@@ -93,9 +90,7 @@ function HomeViewModel() {
                   curve: enums.AnimationCurve.easeOut
                 });
               });
-
             }
-
             btn.opacity = 0;
             if (typeof qz.btnType != "undefined" && qz.btnType == "number") {
               btn.classList.add("mr-25");
@@ -104,7 +99,6 @@ function HomeViewModel() {
             }
             else
               viewModel.page.getElementsByClassName('btn-list-qz')[0].addChild(btn);
-
             btn.on("tap", viewModel.tapQustion);
             btn.animate({
               opacity: 1,
@@ -122,7 +116,6 @@ function HomeViewModel() {
           elem.classList.remove('active-btn');
       });
       args.object.classList.add("active-btn");
-      
       el.animate({
         translate: { x: 300, y: 0 },
         duration: 300,

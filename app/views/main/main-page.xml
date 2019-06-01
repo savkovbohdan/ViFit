@@ -1,0 +1,53 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:maps="nativescript-google-maps-sdk" 
+    xmlns:sd="nativescript-ui-sidedrawer" 
+    xmlns:lv="nativescript-ui-listview" 
+    xmlns:svg="@teammaestro/nativescript-svg" 
+    xmlns:circularProgress="components/circular-progress-bar" navigatingTo="onNavigatingTo" loaded="loaded" 
+    xmlns:IC="nativescript-web-image-cache" class="page">
+    <GridLayout>
+        <AbsoluteLayout>
+            <StackLayout class="animate-circle-bg"/>
+        </AbsoluteLayout>
+
+        <GridLayout rows="60,*">
+            <FlexboxLayout orientation="horizontal" width="100%" row="0" class="action-bar">
+                <Label text="" class="menu-hamburger fa ml-25"/>
+                <!-- <Label flexGrow="1" text="Название страницы" class="title-page h1 mr-25"/>-->
+            </FlexboxLayout>
+
+
+            <TabView row="1" androidOffscreenTabLimit="0" loaded="{{tabLoaded}}" selectedIndexChanged="{{onSelectedIndex}}" id="tabViewContainer" class="tabview" androidTabsPosition="bottom">
+               
+                 <TabViewItem title="&#xA;Тренировки" class="fa tab active-tab">
+                 <TabViewItem.view>
+                        <Frame id="tab1" defaultPage="views/trainer/trainer-page"></Frame>
+                    </TabViewItem.view>
+                </TabViewItem>
+                
+              
+
+                <TabViewItem title="" class="fa tab">
+                    <TabViewItem.view>
+                        <Frame id="tab1" defaultPage="views/shop-main/shop-main-page"></Frame>
+                    </TabViewItem.view>
+                </TabViewItem>
+
+                <TabViewItem title="" class="fa tab">
+                    <StackLayout>
+                        <TabViewItem.view>
+                            <Frame id="tab1" defaultPage="views/statistics/statistics-page"></Frame>
+                        </TabViewItem.view>
+                    </StackLayout>
+                </TabViewItem>
+
+
+                <!--<TabViewItem title="" class="fa tab">
+                    <StackLayout>
+                        <Label text="4 Tab" textWrap="true" class="m-15 h2 text-left" color="blue" />
+                    </StackLayout>
+                </TabViewItem>-->
+            </TabView>
+        </GridLayout>
+    </GridLayout>
+</Page>

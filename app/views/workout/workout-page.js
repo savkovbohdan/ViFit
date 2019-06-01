@@ -1,6 +1,6 @@
 const observableModule = require("tns-core-modules/data/observable");
 var frame = require("tns-core-modules/ui/frame");
-const HomeViewModel = require("./exercise-view-model");
+const HomeViewModel = require("./workout-view-model");
 var imageCache = require("nativescript-web-image-cache");
 const application = require("tns-core-modules/application");
 var mainViewModel;
@@ -12,21 +12,14 @@ function onNavigatingTo(args) {
     mainViewModel = new HomeViewModel();
     page.bindingContext = mainViewModel;
     page.actionBarHidden = true;
-    mainViewModel.page = page;
     var context = page.navigationContext;
-    mainViewModel.userData = context.userData;
-    mainViewModel.exercises = context.exercises;
-};
-
-
-
-function loaded(args){
+    mainViewModel.workout = context.data;
+    mainViewModel.page = page;
     mainViewModel.run();
 }
-
-function unloaded(args){
-    mainViewModel.pause();
+function loaded(args){
+  
 }
+
 exports.loaded = loaded;
-exports.unloaded = unloaded;
 exports.onNavigatingTo = onNavigatingTo;

@@ -16,55 +16,47 @@ function HomeViewModel() {
     state: 0,
     first:true,
     scheduleWorkouts: new ObservableArray(),
-
     templateSelectorFunction: function (item, index, items) {
       if (typeof item.type == "undefined")
         return "default";
       return item.type;
     },
-
-
-    
     scheduleLoad: function () {
+
       //var tempShedule = [];      
       if(viewModel.first){
-        console.log(viewModel.mainContext.userModel.data);
+      
         viewModel.load(viewModel.mainContext.userModel.data);
         viewModel.first = false;
       }else{
+     
         api.getUserData().then((data) => {
+         
           viewModel.load(data);
+          
         }).catch((error) => {
         });
       }
-
-
     },
-
 
   load:function(data){
     var scheduleWorkouts = [];
     viewModel.scheduleWorkouts = new ObservableArray();
-
     if(typeof data.scheduleWorkouts != "undefined"){
       data.value = data;
     }
-
     if (typeof data.value != "undefined" && typeof data.value.scheduleWorkouts != "undefined") {
       scheduleWorkouts = data.value.scheduleWorkouts;
     }
+
     var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     var i = 0;
     for (day in days) {
-
       var item = {
         type: (i % 2 == 0) ? "white-day" : "gray-day",
         name: days[day],
         data: []
       }
-
-
-
       if (typeof scheduleWorkouts[days[day]] != "undefined") {
         var tasks = scheduleWorkouts[days[day]];
         for (task in tasks) {
@@ -81,7 +73,6 @@ function HomeViewModel() {
                 name: "Замер веса",
               }
               item.data.push(data);
-
             }
           }
         }
@@ -90,33 +81,23 @@ function HomeViewModel() {
       i++;
     }
   },
-
-
     chek:function(args){
-      console.log(args.object.info);
-
+    
       el = args.object.getElementsByClassName('chek-box')[0];
       el2 = args.object.getElementsByClassName('btn-select')[0];
-
      if(el.classList.contains("chek-box-chek")){
-
       el.classList.remove("chek-box-chek");
       el2.classList.remove("active-btn");
-
      }else {
-
       el.classList.add("chek-box-chek");
       el2.classList.add("active-btn");
-
      }
-
     },
     save: function(args){
       var buttonBig =  viewModel.page.getElementsByClassName("button-big")[0];
       var radlist =  viewModel.page.getElementsByClassName("main-rad")[0];
       //buttonBig
-      animations.animate(buttonBig, 400, 0, "h");
-
+      
       viewModel.page.runAgainstClasses('list-task', function(elem) {  
         //elem
         nameDay = elem.bindingContext.name;
@@ -124,38 +105,35 @@ function HomeViewModel() {
         flag = true
         elem.runAgainstClasses('chek-box', function(elemChild) { 
           if(flag){
-            api.removeUserData("scheduleWorkouts/" + nameDay);
+           api.removeUserData("scheduleWorkouts/" + nameDay);
             flag = false;
           }
           if(elemChild.classList.contains("chek-box-chek")){
           if(typeof elemChild.info.key != "undefined"){
             api.pushUserData("scheduleWorkouts/" + nameDay, {idWorkout:elemChild.info.key});
           }
-
           if(typeof elemChild.info.type != "undefined"){
             if (elemChild.info.type == "weight")
-            api.pushUserData("scheduleWorkouts/" + nameDay, {type:elemChild.info.type});
-
+              api.pushUserData("scheduleWorkouts/" + nameDay, {type:elemChild.info.type});
           }
         }
-          
-         
+        
         });
-
-
     });
+
+    
+    animations.animate(buttonBig, 400, 0, "h");
+
 
     setTimeout(function(){
       viewModel.scheduleLoad();
+      buttonBig.height = 0;
     }, 400)
     },
-
     editScheldue: function (args) {
-      
     var buttonBig =  viewModel.page.getElementsByClassName("button-big")[0];
     //buttonBig
     animations.animate(buttonBig, 500, 70, "h");
-
       remove = function (el, value) {
         var idx = el.indexOf(value);
         if (idx != -1) {
@@ -171,7 +149,6 @@ function HomeViewModel() {
       userWorkout = [];
       workoutTemp = [];
       allWorkouts = [];
-      
       api.getUserData().then((data) => {
         el.removeChildren();
         if (typeof data.value != "undefined" && typeof data.value.scheduleWorkouts != "undefined") {
@@ -204,9 +181,6 @@ function HomeViewModel() {
         userWorkout = [...viewModel.mainContext.userModel.userWorkouts];
         userWorkout.push({ type: "weight" });
         userWorkoutTemp = [...userWorkout];
-
-        console.log(userWorkoutTemp);
-
         for (workout in userWorkout) {
           find = -1;
           find2 = -1;
@@ -222,26 +196,18 @@ function HomeViewModel() {
             remove(userWorkoutTemp, userWorkout[workout]);
           }
         }
-
-
-       
         for (workout in userWorkoutTemp) {
           userWorkoutTemp[workout].isDay = false;
         }
-
-
-
         allWorkouts = [...dayData.concat(userWorkoutTemp)];
         for (workouts in allWorkouts) {
           var stack = new StackLayout();
-          
           stack.orientation = "horizontal";
           var btn = new Label();
           stack.opacity = 0;
           btn.paddingTop = "10";
           var chekBox = new Label();
           btn.classList.add("btn-select");
-          //  console.log(allWorkouts[workouts]);
           if (typeof allWorkouts[workouts].name != "undefined") {
             btn.text = allWorkouts[workouts].name;
           }
@@ -259,11 +225,10 @@ function HomeViewModel() {
             btn.classList.add("active-btn");
 
           }
-          console.log(btn.text);
+       
           chekBox.info = allWorkouts[workouts];
           stack.addChild(chekBox);
-          stack.addChild(btn);
-        
+          stack.addChild(btn); 
           stack.on("tap", viewModel.chek);
           el.addChild(stack);
           stack.animate({

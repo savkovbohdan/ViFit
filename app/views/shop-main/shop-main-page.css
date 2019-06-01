@@ -1,0 +1,126 @@
+.page {
+    background:rgba(255, 255, 255, 0.0);
+}
+
+.search-input {
+    height: 50dp;
+}
+
+
+
+
+
+
+
+.btn-filter {
+    height: 65;
+    width: 50;
+    border-width: 1px;
+    border-color: transparent;
+    background: transparent;
+    border-radius: 5;
+    color: #83A7FF;
+    font-size: 18;
+    horizontal-align: right;
+    padding: 0;
+    text-align: right;
+    
+}
+
+
+.btn-search-no-active {
+    border-width: 1px;
+    border-color: transparent;
+    background-color: transparent;
+    color: #83A7FF;
+    height: 65;
+    width: 65;
+
+    padding: 0;
+    text-align: center;
+    font-size: 18;
+    horizontal-align: right;
+    padding-top:1;
+    transform: translate(20, 0);
+}
+
+@keyframes example {
+    from { background-color: rgba(255, 255, 255, 0.0); transform: translate(20, 0);}
+    to { background-color: #83A7FF;transform: translate(0, 0);}
+    
+}
+
+.btn-search {
+    height: 60;
+    width: 60;
+
+    border-width: 1px;
+    border-color: transparent;
+    background: #83A7FF;
+    border-radius: 5;
+    color: #fff;
+    font-size: 14;
+    horizontal-align: right;
+    animation-name: example;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+
+.input-search {
+    opacity: 0;
+    transform:  translate(300, 0);
+}
+
+
+@keyframes inputsearch {
+    from { opacity:0; transform: translate(300, 0);}
+    to { opacity:1; transform: translate(0, 0);}
+    
+}
+
+.input-search-active {
+    animation-name: inputsearch;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+.card-item {
+    border-radius: 10dp!important;
+    color: #000;
+    height: 100%;
+    width: 100%;
+ }
+ 
+ 
+ 
+ .card-image {
+     border-color: transparent;
+     border-width: 1;
+ }
+ 
+
+ .min-card-shop .tags{
+     color: #949BAD;
+     font-size: 12;
+ }
+
+ .like {
+     font-size: 14;
+     color: #949BAD;
+
+     font-weight: 600;
+ }
+
+ .like .fa {
+     margin-right: 5;
+ }
+
+ .title {
+     font-size: 14;
+     color: #0A0A0D;
+     font-weight: 600;
+     text-align:  left;
+ }

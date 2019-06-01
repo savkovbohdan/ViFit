@@ -1,12 +1,12 @@
 .page {
-    background:#FEFCFA;
+    background: #FEFCFA;
 }
 
 .custom-shadow {
-    background: linear-gradient(-45deg, rgba(255,255,255, 0.0),rgba(192,191,208, 0.2), rgba(255,255,255, 0.0));
-   vertical-align: center;
-   width: 100%;
-   border-radius: 20;
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 0.0), rgba(192, 191, 208, 0.2), rgba(255, 255, 255, 0.0));
+    vertical-align: center;
+    width: 100%;
+    border-radius: 20;
 }
 
 .animate-circle-bg {
@@ -31,11 +31,11 @@
     text-align: center;
     border-radius: 100;
     margin: 10;
- 
+
 }
 
 
-.progress-background  Label {
+.progress-background Label {
     font-size: 16;
 }
 
@@ -48,11 +48,11 @@
     height: 30;
     width: 30;
     padding: 0;
-    color:#F9B68F;
+    color: #F9B68F;
     font-size: 12;
     margin-bottom: -15;
     vertical-align: top;
-    horizontal-align:right;
+    horizontal-align: right;
 }
 
 
@@ -72,11 +72,11 @@
     font-size: 15;
     color: #0A0A0D;
     font-weight: 500;
-  
+
 }
 
 
-.workouts-list-icons Label  {
+.workouts-list-icons Label {
     color: #9AA0B1;
     margin-right: 15;
     font-size: 12;
@@ -93,16 +93,16 @@
 }
 
 .full-video-exercises {
-    background:#8AB6FD;
+    background: #8AB6FD;
     height: 45;
     width: 45;
     min-width: 45;
     border-radius: 5;
-   
+
 
 }
 
-.full-video-exercises  Label {
+.full-video-exercises Label {
     vertical-align: center;
     horizontal-align: center;
     font-size: 10;
@@ -123,13 +123,13 @@
 }
 
 .progress-icons .time-e-ed {
-    font-size: 12!important;
+    font-size: 12 !important;
     margin-top: -5;
 }
 
 
 .progress-icons .time-e {
-    font-size: 24!important;
+    font-size: 24 !important;
 
 }
 
@@ -142,7 +142,7 @@
 
 .next-ex {
     color: #83A7FF;
-   
+
     width: 100%;
     text-align: right;
 
@@ -154,13 +154,13 @@
     border-radius: 5;
 }
 
-.btn-playar-mins{
+.btn-playar-mins {
     border-color: transparent;
     border-width: 1;
     background-color: transparent;
-    color: #8AB6FD;;
-   width: 30;
-   padding: 0;
+    color: #8AB6FD;
+    width: 30;
+    padding: 0;
     margin-left: 35;
 
 }

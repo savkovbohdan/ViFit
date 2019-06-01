@@ -1,0 +1,21 @@
+.qustion-popup-btn {
+    background: #EAEEFF;
+    height:40;
+    min-width: 60;
+    border-radius: 5;
+    border-color: transparent;
+    border-width: 1;
+    color:#838FAD;
+    font-size: 14;
+    text-transform: none;
+    
+}
+
+.qustion-popup-bg .active-btn{
+    background: #83A7FF;
+    color: #fff;
+}
+
+.qustion-popup-bg {
+    background:#FEFCFA
+}

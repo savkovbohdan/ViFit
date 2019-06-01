@@ -37,28 +37,22 @@ function animate(el, time, to, prop) {
     if (prop == "w")
         from = el.width;
     if (prop == "w%") {
-        console.log(el.width);
+    
         if (typeof el.width.value != "undefined") {
             from = el.width.value * 100;
-            console.log(from);
+      
         }
         else {
             from = el.width;
         }
     }
     this.mt = from;
-    /*
-    console.log("time: " + time);
-    console.log("from: " + from);
-    console.log("to: " + to);
-    */
     duration(time)
         .map(elasticOut)
         .map(amount(to, from))
         .subscribe(function (newVal) {
             if (prop == "mt") {
                 return el.marginTop = newVal;
-                //return this.set('mt', newVal);
             }
             if (prop == "mb")
                 return el.marginBottom = newVal;

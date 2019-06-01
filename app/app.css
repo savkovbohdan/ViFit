@@ -31,6 +31,7 @@ components that have the btn class name.
     placeholder-color:#BBC2D4;
     color: #83A7FF;
     background: #EAEEFF;
+    text-align: left;
 }
 
 .text-input-icon {

@@ -1,9 +1,10 @@
 const observableModule = require("tns-core-modules/data/observable");
 var frame = require("tns-core-modules/ui/frame");
-const HomeViewModel = require("./exercise-view-model");
+const HomeViewModel = require("./statistics-view-model");
 var imageCache = require("nativescript-web-image-cache");
 const application = require("tns-core-modules/application");
 var mainViewModel;
+
 function onNavigatingTo(args) {
     if (application.android) {
         imageCache.initialize();
@@ -13,20 +14,27 @@ function onNavigatingTo(args) {
     page.bindingContext = mainViewModel;
     page.actionBarHidden = true;
     mainViewModel.page = page;
-    var context = page.navigationContext;
-    mainViewModel.userData = context.userData;
-    mainViewModel.exercises = context.exercises;
-};
-
-
-
-function loaded(args){
     mainViewModel.run();
+   
+}
+function loaded(args){
+   
+    
 }
 
-function unloaded(args){
-    mainViewModel.pause();
+
+
+
+exports.onUnloaded = function(args){
+   
 }
+
 exports.loaded = loaded;
-exports.unloaded = unloaded;
 exports.onNavigatingTo = onNavigatingTo;
+
+
+exports.onTrackBallContentRequested = (args) => {
+    months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    date = new Date(args.pointData.Country);
+    args.content = date.getDate() + " " + this.months[date.getMonth()] + ": " + "\u20AC" +args.pointData.Amount;
+}

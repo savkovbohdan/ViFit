@@ -1,0 +1,149 @@
+<Page class="page" navigatingTo="onNavigatingTo" loaded="loaded" 
+  xmlns:lv="nativescript-ui-listview" 
+  xmlns:svg="@teammaestro/nativescript-svg" 
+  xmlns:components="components/text-input" 
+  xmlns:IC="nativescript-web-image-cache" class="page" 
+  xmlns:VideoPlayer="nativescript-videoplayer" 
+  xmlns="http://www.nativescript.org/tns.xsd">
+
+  <ScrollView height="100%">
+    <StackLayout>
+      <GridLayout columns="*, auto" height="65" class="ml-25 mr-25">
+        <GridLayout col="0">
+          <Label class="h1 title-search" verticalAlignment="center" horizontalAlignment="left" text="Магазин"/>
+          <StackLayout height="100%" margin="0" class="input-search" verticalAlignment="center" horizontalAlignment="right">
+            <components:text-input returnPress="{{onTextChange}}" paddingLeft="25" class="text-input" paddingRight="75" width="100%" horizontalAlignment="left" text-align="left" hint="Поиск" text="{{searchText}}"/>
+          </StackLayout>
+          <Button class="fa btn-search-no-active" tap="{{search}}" text="{{searchState == true ? '': ''}}"/>
+        </GridLayout>
+        <Button col="1" class="fa btn-filter" text=""/>
+      </GridLayout>
+
+      <StackLayout visibility="{{ searchText.length == 0 ? 'collapse' : 'visible'  }}">
+        <Label class="h1 ml-25 mr-25 mt-25 mb-25" fontSize="18" horizontalAlignment="left" text="Результаты поиска"/>
+
+        <Label visibility="{{ searchResult.length != 0 ? 'collapse' : 'visible'  }}" class="h1 ml-25" color="#BBC2D4" fontSize="14" horizontalAlignment="left" text="Ничего не найдено"/>
+
+        <lv:RadListView visibility="{{ searchResult.length == 0 ? 'collapse' : 'visible'  }}" class="main-rad ml-25" items="{{ searchResult }}">
+          <lv:RadListView.listViewLayout>
+            <lv:ListViewGridLayout spanCount="2" itemInsertAnimation="Scale" itemDeleteAnimation="Scale" scrollDirection="Vertical"/>
+          </lv:RadListView.listViewLayout>
+          <lv:RadListView.itemTemplate>
+            <StackLayout tap="{{navigateToWorkout}}" class="min-card-shop" paddingRight="25" width="100%">
+
+              <GridLayout height="190">
+                <IC:WebImage height="100%" width="100%" stretch="aspectFill" placeholder="~/images/jpg/poster2.jpg" src="{{poster}}"/>
+                <svg:SVGImage src="~/images/svg/border.svg" height="10" width="10" style="horizontal-align: left; vertical-align:top; " />
+                <svg:SVGImage src="~/images/svg/border.svg" rotate="90" height="10" width="10" style="horizontal-align: right; vertical-align:top; " />
+                <svg:SVGImage src="~/images/svg/border.svg" rotate="-90" height="10" width="10" style="horizontal-align: left; vertical-align:bottom; " />
+                <svg:SVGImage src="~/images/svg/border.svg" rotate="-180" height="10" width="10" style="horizontal-align: right; vertical-align:bottom; " />
+              </GridLayout>
+              <GridLayout columns="*, auto" class="mt-10" height="20" marginBottom="10">
+
+                <Label visibility="{{ tags.length > 0 ? 'collapse' : 'visible'  }}" col="0" class="tags" horizontalAlignment="left" verticalAlignment="center" textAlign="left" text="Тегов неть" marginRight="5" />
+
+                <lv:RadListView visibility="{{ tags.length == 0 ? 'collapse' : 'visible'  }}" horizontalAlignment="left" verticalAlignment="center" items="{{ tags }}">
+                  <lv:RadListView.listViewLayout>
+                    <lv:ListViewLinearLayout col="0" class="tags" horizontalAlignment="left" verticalAlignment="center" scrollDirection="Horizontal" itemInsertAnimation="Scale" itemDeleteAnimation="Scale"/>
+                  </lv:RadListView.listViewLayout>
+                  <lv:RadListView.itemTemplate>
+                    <Label class="tags" text="{{'#' + name}}" marginRight="5" />
+                  </lv:RadListView.itemTemplate>
+                </lv:RadListView>
+
+
+                <StackLayout class="like" col="1" verticalAlignment="center" paddingLeft="10" orientation="horizontal">
+                  <Label class="fa" text=""/>
+                  <Label text="{{likeCount}}" />
+                </StackLayout>
+              </GridLayout>
+              <Label class="title" textWrap="true" horizontalAlignment="left" text="{{name}}"/>
+            </StackLayout>
+            
+          </lv:RadListView.itemTemplate>
+        </lv:RadListView>
+      </StackLayout>
+
+      <StackLayout visibility="{{ recommendations.length != 1 ? 'collapse' : 'visible'  }}" >
+      <Label class="h1 ml-25 mr-25 mt-25 mb-25" fontSize="18" horizontalAlignment="left" text="Рекомендации"/>
+      <lv:RadListView class="main-rad ml-25" items="{{ recommendations }}">
+        <lv:RadListView.listViewLayout>
+
+          <lv:ListViewLinearLayout scrollDirection="Horizontal" itemInsertAnimation="Scale" itemDeleteAnimation="Scale"/>
+        </lv:RadListView.listViewLayout>
+        <lv:RadListView.itemTemplate>
+          <StackLayout tap="{{navigateToWorkout}}" class="min-card-shop mr-25" width="155">
+            <GridLayout height="190">
+              <IC:WebImage height="100%" width="100%" stretch="aspectFill" placeholder="~/images/jpg/poster2.jpg" src="{{poster}}"/>
+              <svg:SVGImage src="~/images/svg/border.svg" height="10" width="10" style="horizontal-align: left; vertical-align:top; " />
+              <svg:SVGImage src="~/images/svg/border.svg" rotate="90" height="10" width="10" style="horizontal-align: right; vertical-align:top; " />
+              <svg:SVGImage src="~/images/svg/border.svg" rotate="-90" height="10" width="10" style="horizontal-align: left; vertical-align:bottom; " />
+              <svg:SVGImage src="~/images/svg/border.svg" rotate="-180" height="10" width="10" style="horizontal-align: right; vertical-align:bottom; " />
+            </GridLayout>
+            <GridLayout columns="*, auto" class="mt-10" height="20" marginBottom="10">
+
+              <Label visibility="{{ tags.length > 0 ? 'collapse' : 'visible'  }}" col="0" class="tags" horizontalAlignment="left" verticalAlignment="center" textAlign="left" text="Тегов неть" marginRight="5" />
+              <lv:RadListView visibility="{{ tags.length == 0 ? 'collapse' : 'visible'  }}" horizontalAlignment="left" verticalAlignment="center" items="{{ tags }}">
+                <lv:RadListView.listViewLayout>
+                  <lv:ListViewLinearLayout col="0" class="tags" horizontalAlignment="left" verticalAlignment="center" scrollDirection="Horizontal" itemInsertAnimation="Scale" itemDeleteAnimation="Scale"/>
+                </lv:RadListView.listViewLayout>
+                <lv:RadListView.itemTemplate>
+                  <Label class="tags" text="{{'#' + name}}" marginRight="5" />
+                </lv:RadListView.itemTemplate>
+              </lv:RadListView>
+
+              <StackLayout class="like" paddingLeft="10" col="1" verticalAlignment="center" orientation="horizontal">
+
+
+                <Label class="fa" text=""/>
+                <Label text="{{likeCount}}" />
+              </StackLayout>
+            </GridLayout>
+            <Label class="title" textWrap="true" horizontalAlignment="left" text="{{name}}"/>
+          </StackLayout>
+        </lv:RadListView.itemTemplate>
+      </lv:RadListView>
+      </StackLayout>
+
+
+      <Label class="h1 ml-25 mr-25 mt-25 mb-25" fontSize="18" horizontalAlignment="left" text="Популярные"/>
+      <lv:RadListView class="main-rad ml-25" items="{{ populars }}">
+        <lv:RadListView.listViewLayout>
+          <lv:ListViewLinearLayout scrollDirection="Horizontal" itemInsertAnimation="Scale" itemDeleteAnimation="Scale"/>
+        </lv:RadListView.listViewLayout>
+        <lv:RadListView.itemTemplate>
+          <StackLayout tap="{{navigateToWorkout}}" class="min-card-shop mr-25" width="155">
+            <GridLayout height="190">
+              <IC:WebImage height="100%" width="100%" stretch="aspectFill" placeholder="~/images/jpg/poster2.jpg" src="{{poster}}"/>
+              <svg:SVGImage src="~/images/svg/border.svg" height="10" width="10" style="horizontal-align: left; vertical-align:top; " />
+              <svg:SVGImage src="~/images/svg/border.svg" rotate="90" height="10" width="10" style="horizontal-align: right; vertical-align:top; " />
+              <svg:SVGImage src="~/images/svg/border.svg" rotate="-90" height="10" width="10" style="horizontal-align: left; vertical-align:bottom; " />
+              <svg:SVGImage src="~/images/svg/border.svg" rotate="-180" height="10" width="10" style="horizontal-align: right; vertical-align:bottom; " />
+            </GridLayout>
+            <GridLayout columns="*, auto" class="mt-10" height="20" marginBottom="10">
+
+              <Label visibility="{{ tags.length > 0 ? 'collapse' : 'visible'  }}" col="0" class="tags" horizontalAlignment="left" verticalAlignment="center" textAlign="left" text="Тегов неть" marginRight="5" />
+              <lv:RadListView visibility="{{ tags.length == 0 ? 'collapse' : 'visible'  }}" horizontalAlignment="left" verticalAlignment="center" items="{{ tags }}">
+                <lv:RadListView.listViewLayout>
+                  <lv:ListViewLinearLayout col="0" class="tags" horizontalAlignment="left" verticalAlignment="center" scrollDirection="Horizontal" itemInsertAnimation="Scale" itemDeleteAnimation="Scale"/>
+                </lv:RadListView.listViewLayout>
+                <lv:RadListView.itemTemplate>
+                  <Label class="tags" text="{{'#' + name}}" marginRight="5" />
+                </lv:RadListView.itemTemplate>
+              </lv:RadListView>
+
+              <StackLayout class="like" col="1" paddingLeft="10" verticalAlignment="center" orientation="horizontal">
+                <Label class="fa" text=""/>
+                <Label text="{{likeCount}}" />
+              </StackLayout>
+            </GridLayout>
+            <Label class="title" textWrap="true" horizontalAlignment="left" text="{{name}}"/>
+          </StackLayout>
+        </lv:RadListView.itemTemplate>
+      </lv:RadListView>
+
+    </StackLayout>
+  </ScrollView>
+
+
+</Page>

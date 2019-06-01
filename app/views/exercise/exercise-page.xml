@@ -13,10 +13,9 @@
       <GridLayout row="0" height="250" class="video-container">
         <Button class="close fa mt-25 mr-25" text="" tap="{{navigateBack}}"/>
         <StackLayout class="video">
-          <VideoPlayer:Video fill="true" mute="true" class="video" id="nativeVideoPlayer" controls="false" loop="true" autoplay="true" height="100%" src="{{exercise.video}}" />
+          <VideoPlayer:Video fill="true" class="video videos" id="nativeVideoPlayer" controls="false" loop="true" autoplay="true" height="100%" src="{{exercise.video}}" />
         </StackLayout>
       </GridLayout>
-
       <StackLayout row="1"  verticalAlignment="top">
         <Label class="h1  ml-25 mr-25 mt-20 mb-20" fontSize="18" text="{{exercise.name}}"/>
         <StackLayout orientation="horizontal" class="card-white  ml-25 mr-25" height="100%">
@@ -32,21 +31,14 @@
             </GridLayout>
             <Label class="info-blue-radius" verticalAlignment="center" horizontalAlignment="right" text="{{repeatExercise + 'x'}}"/>
           </GridLayout>
-        
-     
      <StackLayout  visibility="{{exercise.equements ? 'visible' : 'collapsed'}}" orientation="horizontal" class="mt-10 mr-25 ml-25"  horizontalAlignment="center">
        <Label class="equements fa" marginRight="10" textAlign="center" text="" />
        <Label class="equements"  marginTop="-3" textAlign="center" text="{{exercise.equements}}" />
-      </StackLayout>
-      
+      </StackLayout> 
     </StackLayout>
-
         </StackLayout>
-
       </StackLayout>
-
       <StackLayout row="2" class="mt-20">
-       
         <!--next-->
         <StackLayout  class="mr-25 ml-25" tap="{{next}}">
           <FlexboxLayout>
@@ -62,16 +54,10 @@
                     <Label text="{{nextExercise.times + ' мин'}}"/>
                     <Label text="" class="fa"/>
                     <Label text="{{nextExercise.setsCount + ' сет'}}"/>
-                    <Label text="" class="fa"/>
-                    
+                    <Label text="" class="fa"/>      
                     <Label text="{{nextExercise.equements}}"/>
-
                   </StackLayout>
                 </StackLayout>
-               
-               <!-- <GridLayout alignSelf="center" class="full-video-exercises ml-15">
-                  <Label class="video-camera fa" text=""/>
-                </GridLayout>-->
               </FlexboxLayout>
             </FlexboxLayout>
           </FlexboxLayout>
@@ -80,8 +66,8 @@
         <GridLayout orientation="horizontal" class="ml-25 mr-25 mt-20 mb-20" >
           <Button  horizontalAlignment="left" class="button-big stop-pause fa" color="#fff" text="{{!pauseState ? '' :  '' }}" tap="{{!pauseState ? pause : play}}"/>
           <StackLayout  orientation="horizontal"  horizontalAlignment="right">
-            <Button class="fa btn-playar-mins" text="" tap="{{navigateToExercise}}"/>
-            <Button  fontWeight="900" class="fa btn-playar-mins" text="" tap="{{navigateToExercise}}"/>
+            <Button class="fa btn-playar-mins" text="" color="{{mute ? '#F9B68F' : '#83A7FF'}}" tap="{{muted}}"/>
+            <Button  fontWeight="900" class="fa btn-playar-mins" text="" tap="{{refresh}}"/>
           </StackLayout>
         </GridLayout>
       </StackLayout>

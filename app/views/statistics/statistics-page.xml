@@ -1,0 +1,83 @@
+<Page class="page" navigatingTo="onNavigatingTo" loaded="loaded" 
+  xmlns:lv="nativescript-ui-listview" 
+  xmlns:svg="@teammaestro/nativescript-svg" 
+  xmlns:circularProgress="components/circular-progress-bar" navigatingTo="onNavigatingTo" loaded="loaded"   unloaded="onUnloaded" 
+  xmlns:popup="components/qustion-popup" 
+  xmlns:IC="nativescript-web-image-cache" class="page" 
+  xmlns:ns="nativescript-carousel" 
+  xmlns:chart="nativescript-ui-chart" 
+  xmlns="http://www.nativescript.org/tns.xsd">
+
+
+    <ScrollView class="scroll" width="100%" height="100%" row="1" >
+      <StackLayout height="auto" width="100%" paddingLeft="25" paddingRight="25">
+        <StackLayout height="auto">
+          <Label class="h1 mt-25 mb-25" text="Статистика" />
+
+          <StackLayout orientation="horizontal">
+            <lv:RadListView horizontalAlignment="left" verticalAlignment="center" items="{{ statisticsBtnList }}">
+              <lv:RadListView.listViewLayout>
+                <lv:ListViewLinearLayout col="0" class="tags" horizontalAlignment="left" verticalAlignment="center" scrollDirection="Horizontal" itemInsertAnimation="Scale" itemDeleteAnimation="Scale"/>
+              </lv:RadListView.listViewLayout>
+              <lv:RadListView.itemTemplate>
+                <Button class="{{active == true ? 'statistics-btn statistics-active-btn' : 'statistics-btn' }}" marginRight="25" text="{{btnText}}" tap="{{statisticsTap}}" />
+              </lv:RadListView.itemTemplate>
+            </lv:RadListView>
+          </StackLayout>
+
+          <StackLayout class="custom-shadow mt-25" height="auto">
+            <StackLayout class="card-white" height="auto" >
+              <GridLayout class="chart" columns="*" rows="350" >
+
+                <chart:RadCartesianChart  row="0" col="0" horizontalZoom="{{(sourceItems.length / 4) < 1 ? 1 : (sourceItems.length / 4)}}" verticalZoom="1">
+                  <chart:RadCartesianChart.grid>
+                    <chart:RadCartesianChartGrid horizontalLinesVisible="true" verticalLinesVisible="true" horizontalStripLinesVisible="false" verticalStripLinesVisible="false" verticalStrokeColor="#D7D6E6" horizontalStrokeColor="#D7D6E6" horizontalStrokeWidth="1" verticalStrokeWidth="1" horizontalStripLineColor="#D7D6E6">
+                    </chart:RadCartesianChartGrid>
+                  </chart:RadCartesianChart.grid>
+                  <chart:RadCartesianChart.horizontalAxis>
+
+                    <!-- minimum="15/10/2018" maximum="15/12/2018"-->
+
+                    <chart:CategoricalAxis
+                    allowPan="false" 
+                    allowZoom="true" 
+                   
+                    plotMode="BetweenTicks" 
+                    labelTextColor="#878EA0" 
+                    labelSize="12" lineHidden="true" labelMargin="20" dateFormat="dd.MM.yy" />
+
+                  </chart:RadCartesianChart.horizontalAxis>
+                  <chart:RadCartesianChart.verticalAxis >
+                    <chart:LinearAxis allowPan="false" allowZoom="false" labelTextColor="#878EA0" firstLabelVisibility="Hidden" labelSize="12" lineHidden="true" labelLayoutMode="Outer" horizontalLocation="left" labelFormat="%.2f" labelMargin="20"></chart:LinearAxis>
+                  </chart:RadCartesianChart.verticalAxis>
+                  <chart:RadCartesianChart.series>
+                    <chart:SplineSeries showLabels="true" seriesName="Line1" items="{{sourceItems}}" categoryProperty="dateString" valueProperty="data">
+                      <chart:SplineSeries.labelStyle>
+                        <chart:PointLabelStyle margin="10" fontStyle="Bold" fillColor="#FDBB90" textSize="12" textColor="White" />
+                      </chart:SplineSeries.labelStyle>
+                    </chart:SplineSeries>
+                  </chart:RadCartesianChart.series>
+                  <chart:RadCartesianChart.palettes>
+                    <chart:Palette seriesName="Line1">
+                      <chart:Palette.entries>
+                        <chart:PaletteEntry fillColor="#83A7FF" strokeWidth="8" strokeColor="#83A7FF"/>
+                        <chart:PaletteEntry fillColor="#cc3399" strokeColor="#000000"></chart:PaletteEntry>
+                      </chart:Palette.entries>
+                    </chart:Palette>
+                  </chart:RadCartesianChart.palettes>
+                  <chart:RadCartesianChart.trackball>
+                    <chart:Trackball snapMode="ClosestPoint">
+                    </chart:Trackball>
+                  </chart:RadCartesianChart.trackball>
+                </chart:RadCartesianChart>
+              </GridLayout>
+            </StackLayout>
+          </StackLayout>
+
+        </StackLayout>
+      </StackLayout>
+    </ScrollView>
+
+</Page>
+
+

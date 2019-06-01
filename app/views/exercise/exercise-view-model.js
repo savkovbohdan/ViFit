@@ -3,6 +3,7 @@ require("nativescript-dom");
 var enums = require("tns-core-modules/ui/enums");
 var ObservableArray = require("tns-core-modules/data/observable-array").ObservableArray;
 var api = require("../../js/api-firebase-module");
+var gF = require("../../js/global-functions");
 var platform = require("tns-core-modules/platform");
 const Button = require("tns-core-modules/ui/button").Button;
 const StackLayout = require("tns-core-modules/ui/layouts/stack-layout").StackLayout;
@@ -22,22 +23,43 @@ function HomeViewModel() {
     timerObj: null,
     workoutUserDayId: null,
     exercise: {},
-    userData:{},
+    userData: {},
     repeatExercise: 0,
     totalTime: 0,
     startTime: 0,
+    tempSpeakStatus: -1,
     secondsProgress: 0,
     nextExercise: {},
     exerciseStatus: 0, //0 - выполнение, 1 - отдых
     exercises: new ObservableArray(),
     pauseState: false,
+    nextPress:false,
+    mute:false,
+    repeatWorkout: false,
     run: function () {
       api.screenSettings();
+
+      countComplate = 0;
+      for(key in viewModel.exercises){
+        if(viewModel.exercises[key].isComplate == true){
+          countComplate++;
+        }
+      }
+
+      if(viewModel.exercises.length == countComplate){
+        viewModel.repeatWorkout = true;
+        console.log("Вы уже прошли треню")
+      }
+
+
       if (viewModel.pauseState != true) {
         viewModel.play();
       }
-    },
 
+    },
+    next: () =>{
+      console.log("next");
+    },
     play: () => {
       if (viewModel.flagTime) {
         viewModel.exerciseStart();
@@ -45,6 +67,17 @@ function HomeViewModel() {
       }
     },
 
+    refresh:() =>{
+      viewModel.exerciseStart();
+    },
+
+    muted:() =>{
+      if(viewModel.mute)
+       viewModel.mute = false;
+      else
+       viewModel.mute = true;
+    },
+    
     pause: () => {
       if (viewModel.timerObj != null) {
         viewModel.flagTime = true;
@@ -56,36 +89,53 @@ function HomeViewModel() {
       viewModel.flagTime = false;
       viewModel.timerObj = timerModule.setInterval(() => {
         viewModel.timer++;
+        viewModel.trainerSpeek();
         viewModel.exerciseEvent();
       }, 10);
     },
-    complateExercise:(exercise) => {
-      if(exercise.url.workoutUserDayId != null)
-        viewModel.workoutUserDayId = exercise.url.workoutUserDayId;
-      if(viewModel.workoutUserDayId == null){
-        api.pushUserData("workouts/" + exercise.url.workoutUserId + "/days", {idDay:exercise.url.workoutIdDay}).then((data) => {
-          viewModel.workoutUserDayId = data.key;
-           api.pushUserData("workouts/" + exercise.url.workoutUserId + "/days/" + data.key + "/exercises", {idExercises:exercise.url.idExercise, isComplate:true}).then((data) => {
-         });
-        });
-     }else {
-      api.pushUserData("workouts/" + exercise.url.workoutUserId + "/days/" + viewModel.workoutUserDayId + "/exercises", {idExercises:exercise.url.idExercise, isComplate:true}).then((data) => {
-      });
-     }
+    trainerSpeek: () => {
+      if( viewModel.mute == false){
+      if (viewModel.tempSpeakStatus != viewModel.exerciseStatus) {
+        if (viewModel.exerciseStatus == 0) {
+          gF.speak("Выполнить " + viewModel.exercise.name + " " + viewModel.repeatExercise + " раз");
+        } else {
+          gF.speak("Отдых " + viewModel.exercise.set[viewModel.setIndex][1].relaxTime + "секунд");
+        }
+        viewModel.tempSpeakStatus = viewModel.exerciseStatus;
+      }
+    }
     },
-
+    complateExercise: (exercise) => {
+      viewModel.exercises[viewModel.exerciseIndex].isComplate = true;
+    
+      if(!viewModel.repeatWorkout){
+      if (exercise.url.workoutUserDayId != null)
+        viewModel.workoutUserDayId = exercise.url.workoutUserDayId;
+      if (viewModel.workoutUserDayId == null) {
+        api.pushUserData("workouts/" + exercise.url.workoutUserId + "/days", { idDay: exercise.url.workoutIdDay }).then((data) => {
+          viewModel.workoutUserDayId = data.key;
+          api.pushUserData("workouts/" + exercise.url.workoutUserId + "/days/" + data.key + "/exercises", { idExercises: exercise.url.idExercise, isComplate: true }).then((data) => {
+          });
+        });
+      } else {
+        api.pushUserData("workouts/" + exercise.url.workoutUserId + "/days/" + viewModel.workoutUserDayId + "/exercises", { idExercises: exercise.url.idExercise, isComplate: true }).then((data) => {
+        });
+      }
+    }
+   
+    },
     complateWorkout: (url) => {
-     api.updatePowerPoints(parseInt(viewModel.userData.userModel.data.powerPoints)+ 10);
+      if(!viewModel.repeatWorkout){
+      api.updatePowerPoints(parseInt(viewModel.userData.userModel.data.powerPoints) + 10);
       data = {
         workoutTime: Date.now() - viewModel.startTimeTraining,
         idWorkout: url.idWorkout,
         idDay: url.workoutIdDay
       };
       api.pushStatistics(data, "workout");
-      api.setUserDataUrl("workouts/" + url.workoutUserId + "/days/" + viewModel.workoutUserDayId, {isComplate: true, userDateComplate: Date.now()});
+      api.setUserDataUrl("workouts/" + url.workoutUserId + "/days/" + viewModel.workoutUserDayId, { isComplate: true, userDateComplate: Date.now() });
+    }
     },
-
-
 
     exerciseEvent: () => {
       viewModel.totalTime = Date.now() - viewModel.startTime;
@@ -93,8 +143,6 @@ function HomeViewModel() {
         viewModel.secondsProgress = Math.ceil((viewModel.exercise.set[viewModel.setIndex][1].time * 1000 - viewModel.totalTime) / 1000);
         viewModel.progress = 100 - ((viewModel.secondsProgress - 1) / viewModel.exercise.set[viewModel.setIndex][1].time * 100);
         if (viewModel.totalTime >= viewModel.exercise.set[viewModel.setIndex][1].time * 1000) {
-          //время упражнения завершено
-          console.log("Установило сотстояние");
           viewModel.exerciseStatus = 1;
           viewModel.totalTime = 0;
           viewModel.startTime = Date.now();
@@ -103,9 +151,18 @@ function HomeViewModel() {
             viewModel.complateExercise(viewModel.exercise);
           }
           //Окончание трени
-          if(viewModel.exercise.set.length - 1 == viewModel.setIndex && viewModel.exercises._array.length - 1 == viewModel.exerciseIndex) {
+
+          var countComplate = 0;
+          for(key in viewModel.exercises){
+            if(viewModel.exercises[key].isComplate == true){
+              countComplate++;
+            }
+          }
+          if (viewModel.exercise.set.length - 1 == viewModel.setIndex && viewModel.exercises.length == countComplate) {
             viewModel.pause();
+            console.log("complate");
             viewModel.complateWorkout(viewModel.exercise.url);
+          } else {
           }
         }
       }
@@ -114,8 +171,14 @@ function HomeViewModel() {
         viewModel.progress = ((viewModel.secondsProgress - 1) / viewModel.exercise.set[viewModel.setIndex][1].relaxTime * 100);
         if (viewModel.totalTime >= viewModel.exercise.set[viewModel.setIndex][1].relaxTime * 1000) {
           viewModel.exerciseStatus = 0;
+          var countComplate = 0;
+          for(key in viewModel.exercises){
+            if(viewModel.exercises[key].isComplate == true){
+              countComplate++;
+            }
+          }
           if (viewModel.exercise.set.length - 1 == viewModel.setIndex) { //Прверка на выпоненные сеты
-            if (viewModel.exercises._array.length - 1 != viewModel.exerciseIndex) { //Проверка на оставшиеся упражнения
+            if (viewModel.exercises.length - 1 != viewModel.exerciseIndex) { //Проверка на оставшиеся упражнения
               viewModel.setIndex = 0;
               viewModel.exerciseIndex++;
             }
@@ -127,11 +190,26 @@ function HomeViewModel() {
         }
       }
     },
-
-    
     exerciseStart: () => {
-      console.log(viewModel.userData);
-      ex = Object.assign({}, viewModel.exercises._array[viewModel.exerciseIndex]);
+
+      flagNext = false;
+      var nextIndex = -1;
+      if(viewModel.nextPress == false)
+      for(key in viewModel.exercises){
+        if(viewModel.exercises[key].isComplate != true){
+          if(flagNext){
+            nextIndex = key;
+            break;
+          }else {
+            viewModel.exerciseIndex = key;
+            flagNext = true
+          }
+        }
+      }
+
+
+      
+      ex = Object.assign({}, viewModel.exercises[viewModel.exerciseIndex]);
       ex.sets = Object.entries(ex.sets);
       ex.set = ex.sets.sort((a, b) => {
         if (a[1].index <= b[1].index)
@@ -146,12 +224,21 @@ function HomeViewModel() {
         viewModel.startTime = Date.now();
       }
       viewModel.exercise = ex;
-      //Следующие упражнение
-      if (viewModel.exercises._array.length - 1 >= viewModel.exerciseIndex + 1) {
+      setTimeout(() => {
+        viewModel.page.getElementsByClassName('videos')[0].mute(true);
+      }, 200);
 
-        console.log(viewModel.nextExercise);
-        viewModel.nextExercise = Object.assign({}, viewModel.exercises._array[viewModel.exerciseIndex + 1]);
+      if (nextIndex != -1) {
+        viewModel.nextExercise = Object.assign({}, viewModel.exercises[nextIndex]);
+      }else{
+
+        
+        if(viewModel.exerciseIndex  <  viewModel.exercises.length-1 )
+          viewModel.nextExercise = Object.assign({}, viewModel.exercises[viewModel.exerciseIndex + 1]);
+        else
+        viewModel.nextExercise = Object.assign({}, viewModel.exercises[0]);
       }
+
     },
     navigateBack: function (args) {
       viewModel.page.frame.goBack();

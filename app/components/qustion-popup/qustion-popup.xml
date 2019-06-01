@@ -1,0 +1,13 @@
+<GridLayout class="qustion-popup-bg" height="100%" width="100%"
+xmlns:svg="@teammaestro/nativescript-svg" 
+>
+    <StackLayout width="100%" paddingLeft="25" paddingRight="25"  verticalAlignment="center" horizontalAlignment="center">
+    <Label text="{{qustionText}}" class="h1" fontSize="18" width="70%" horizontalAlignment="left"  textWrap="true"/>
+    <StackLayout orientation="horizontal" class="mt-25">
+        <Button class="qustion-popup-btn  mr-20 active-btn" text="{{qustionPopupBtnFirst}}" tap="{{qustionPopupBtnFirstTap}}" />
+        <Button class="qustion-popup-btn" text="{{qustionPopupBtnSecond}}" tap="{{qustionPopupBtnSecondTap}}"/>
+    </StackLayout>
+    </StackLayout>
+
+    <svg:SVGImage src="~/images/svg/roboto.svg" height="267" width="210" style="horizontal-align: right; vertical-align:center; margin-right:-100;"/>
+</GridLayout>

@@ -1,0 +1,94 @@
+<Page class="page" navigatingTo="onNavigatingTo" loaded="loaded" 
+  xmlns:lv="nativescript-ui-listview" 
+  xmlns:svg="@teammaestro/nativescript-svg" 
+  xmlns:circularProgress="components/circular-progress-bar" navigatingTo="onNavigatingTo" loaded="loaded" 
+  xmlns:popup="components/qustion-popup"
+  xmlns:IC="nativescript-web-image-cache" class="page" 
+  xmlns:ns="nativescript-carousel" 
+  xmlns="http://www.nativescript.org/tns.xsd">
+  <GridLayout>
+
+    <!--<AbsoluteLayout>
+      <StackLayout class="animate-circle-bg"/>
+    </AbsoluteLayout>-->
+
+    <GridLayout rows="60, *, auto" class="grid-container">
+      <FlexboxLayout orientation="horizontal" width="100%" row="0" class="action-bar">
+        <Label tap="{{navigateBack}}" text="" class="menu-hamburger fa ml-25" fontSize="15" />
+      </FlexboxLayout>
+      <ScrollView class="scroll" width="100%" height="100%" row="1">
+        <GridLayout height="auto" paddingTop="0" paddingLeft="25" paddingRight="25">
+          <StackLayout >
+            
+
+          <!--  <StackLayout class="workout-info mt-20" orientation="horizontal">
+              <Label text="" class="fa"/>
+              <Label text="{{fullTime}}"/>
+              <Label text="" class="fa"/>
+              <Label text="{{exercisesCount }}"/>
+            </StackLayout>-->
+            <GridLayout class="workout-poster mt-0" marginBottom="25">
+              <ns:Carousel id="myCarousel" items="{{ workout.posters }}" height="100%" width="100%" android:indicatorAnimation="slide" indicatorColor="#fff" indicatorOffset="0,0" showIndicator="true">
+                <ns:Carousel.itemTemplate>
+                  <ns:CarouselItem verticalAlignment="middle">
+                    <GridLayout>
+                      <IC:WebImage height="100%" width="100%" stretch="aspectFill" placeholder="~/images/jpg/poster.jpg" src="{{$value}}"/>
+                      <svg:SVGImage src="~/images/svg/border.svg" height="10" width="10" style="horizontal-align: left; vertical-align:top; " />
+                      <svg:SVGImage src="~/images/svg/border.svg" rotate="90" height="10" width="10" style="horizontal-align: right; vertical-align:top; " />
+                      <svg:SVGImage src="~/images/svg/border.svg" rotate="-90" height="10" width="10" style="horizontal-align: left; vertical-align:bottom; " />
+                      <svg:SVGImage src="~/images/svg/border.svg" rotate="-180" height="10" width="10" style="horizontal-align: right; vertical-align:bottom; " />
+                    </GridLayout>
+                  </ns:CarouselItem>
+                </ns:Carousel.itemTemplate>
+              </ns:Carousel>
+            </GridLayout>
+            <FlexboxLayout  horizontalAlignment="left"  width="70%">
+              <Label class="h1"  fontSize="20" flexGrow="1" textWrap="true" alignSelf="center" textAlign="left" horizontalAlignment="left" text="{{workout.name}} "/>
+            </FlexboxLayout>
+
+            <GridLayout columns="*, auto" class="mt-20"  marginBottom="10">
+              <Label visibility="{{ workout.tags.length > 0 ? 'collapse' : 'visible'  }}" col="0" class="tags" horizontalAlignment="left" verticalAlignment="center" textAlign="left" text="Тегов неть" marginRight="5" />
+              <lv:RadListView visibility="{{ workout.tags.length == 0 ? 'collapse' : 'visible'  }}" horizontalAlignment="left" verticalAlignment="center" items="{{ workout.tags }}">
+                <lv:RadListView.listViewLayout>
+                  <lv:ListViewLinearLayout col="0" class="tags" horizontalAlignment="left" verticalAlignment="center" scrollDirection="Horizontal" itemInsertAnimation="Scale" itemDeleteAnimation="Scale"/>
+                </lv:RadListView.listViewLayout>
+                <lv:RadListView.itemTemplate>
+                  <Label class="tags" text="{{name}}" marginRight="5" />
+                </lv:RadListView.itemTemplate>
+              </lv:RadListView>
+              <StackLayout class="like" tap="{{like}}" color="{{isLike ? '#83A7FF' : '#BBC2D4'}}" paddingLeft="10" col="1" verticalAlignment="center" orientation="horizontal">
+                <Label class="fa" text=""/>
+                <Label verticalAlignment="center" padding="0" marginTop="-2" text="{{likeCount}}" />
+              </StackLayout>
+            </GridLayout>
+
+
+            <StackLayout orientation="horizontal"  class="workout-info mt-15">
+               <Label class="fa" text=""/>
+
+               <Label verticalAlignment="center" padding="0" marginTop="-2" text="Физическая подготовка" />
+            </StackLayout>
+
+             <Label class="workout-info-gray mt-10" text="{{level}}"/>
+             <StackLayout orientation="horizontal"  class="workout-info  mt-15">
+               <Label class="fa" text=""/>
+               <Label verticalAlignment="center" padding="0" marginTop="-2" text="Инвентарь" />
+            </StackLayout>
+            <Label class="workout-info-gray mt-10" text="{{workout.equments}}"/>
+            <Label class="workout-description mt-20 mb-20" textWrap="true" text="{{workout.description}}"/>          
+          </StackLayout>
+        </GridLayout>
+      </ScrollView>
+      <StackLayout row="2" orientation="vertical" class="button-big" tap="{{addRemoveWorkout}}">
+        <StackLayout height="100%" orientation="horizontal" horizontalAlignment="center">
+          <Label verticalAlignment="center" text="{{ !isAddWorkout ? 'Добавить' : 'Удалить'}}" id="text" />
+          <Label verticalAlignment="center" class="fa" text="" id="icon"/>
+        </StackLayout>
+      </StackLayout>
+    </GridLayout>
+  <GridLayout class="pp-qw" height="100%" verticalAlignment="bottom" horizontalAlignment="center">
+    <popup:qustion-popup  verticalAlignment="bottom" horizontalAlignment="center"/>
+</GridLayout>
+
+  </GridLayout>
+</Page>

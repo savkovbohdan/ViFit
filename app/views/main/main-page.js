@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const HomeViewModel = require("./trainer-view-model");
+const HomeViewModel = require("./main-view-model");
 var page;
 var mainViewModel;
 var imageCache = require("nativescript-web-image-cache");
@@ -13,14 +13,9 @@ function onNavigatingTo(args) {
     }
     page = args.object;
     mainViewModel = HomeViewModel();
-
     page.bindingContext = mainViewModel;
-
     page.actionBarHidden = true;
     mainViewModel.page = page;
-
-    mainViewModel.loadData();
-
 }
 
 
