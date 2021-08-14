@@ -123,5 +123,5 @@ Aureole доступен по адресу Apache License 2.0 (Apache-2.0).
 
 # 🈂️ Переводы ![](RackMultipart20210814-4-ec3q2v_html_cb55ddb5edd60516.gif)
 
--Russian 🇷🇺
--English 🇷🇺
+- Russian 🇷🇺
+- English 🇷🇺
