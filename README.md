@@ -1,10 +1,9 @@
 ![](https://github.com/savkovbohdan/ViFit/blob/master/Header.png)
 
-![](RackMultipart20210814-4-ec3q2v_html_d3e67eee27c5af5e.png)
+[![Latest release](https://img.shields.io/github/v/release/Art9Studio/Aureole)](https://github.com/Art9Studio/Aureole)
 
-![](RackMultipart20210814-4-ec3q2v_html_3d312e3e55afc286.png) ![](RackMultipart20210814-4-ec3q2v_html_6b74a50d9a610a90.png)
-
-![](RackMultipart20210814-4-ec3q2v_html_cb55ddb5edd60516.gif)
+<a href="https://discord.gg/EjBQ3fKg"><img src="https://img.shields.io/badge/chat-discord-brightgreen.svg?logo=discord&style=flat"></a>
+<a href="https://twitter.com/aureolecloud"><img src="https://img.shields.io/badge/Follow-aureolecloud-blue.svg?style=flat&logo=twitter"></a>
 
 # 🔥 О проекте
 
