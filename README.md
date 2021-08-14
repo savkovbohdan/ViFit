@@ -72,7 +72,7 @@
 
 # ⚙ Архитектура 
 
-![](https://github.com/savkovbohdan/ViFit/blob/master/Scheme.png)
+ <img src="https://github.com/savkovbohdan/ViFit/blob/master/Scheme.png" width="500px"/>
 
 # 🔄 Коммуникация на стороне клиента ![](RackMultipart20210814-4-ec3q2v_html_cb55ddb5edd60516.gif)
 
