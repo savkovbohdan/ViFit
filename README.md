@@ -55,7 +55,7 @@
 7. Переводы
 
 
-- [Быстрый старт:](#quickstart)
+- [Быстрый старт:](#быстрый-запуск)
     - [Развертывание в один клик](#one-click-deployment-on-hasura-cloud)
     - [Heroku](#other-one-click-deployment-options)
     - [Render](#other-deployment-methods)
