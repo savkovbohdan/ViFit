@@ -2,7 +2,6 @@
 
 ![Lines of code](https://img.shields.io/tokei/lines/github/art9studio/aureole)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/art9studio/aureole)
-
 <a href="https://discord.gg/EjBQ3fKg"><img src="https://img.shields.io/badge/chat-discord-brightgreen.svg?logo=discord&style=flat"></a>
 <a href="https://twitter.com/aureolecloud"><img src="https://img.shields.io/badge/Follow-aureolecloud-blue.svg?style=flat&logo=twitter"></a>
 
@@ -125,5 +124,4 @@ Aureole доступен по адресу Apache License 2.0 (Apache-2.0).
 # 🈂️ Переводы ![](RackMultipart20210814-4-ec3q2v_html_cb55ddb5edd60516.gif)
 
 Russian 🇷🇺
-
 English 🇷🇺
