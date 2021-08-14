@@ -54,6 +54,25 @@
 6. Лицензия
 7. Переводы
 
+
+- [Быстрый старт:](#quickstart)
+    - [Развертывание в один клик](#one-click-deployment-on-hasura-cloud)
+    - [Heroku](#other-one-click-deployment-options)
+    - [Render](#other-deployment-methods)
+    - [Другие методы развертывания](#other-deployment-methods)
+- [Архитектура](#architecture)
+- [Инструменты клиентской стороны](#client-side-tooling)
+    - [Rest API](#other-one-click-deployment-options)
+    - [Интеграция с бизнес-логикой](#other-deployment-methods)
+- [Плагины](#add-business-logic)
+    - [О плагинах](#remote-schemas)
+    - [Список плагинов](#trigger-webhooks-on-database-events)
+- [Примеры](#demos)
+- [Поддержка и устранение багов](#support--troubleshooting)
+- [Лицензия](#contributing)
+- [Переводы assets](#brand-assets)
+
+
 # 🚀 Быстрый запуск: ![](RackMultipart20210814-4-ec3q2v_html_cb55ddb5edd60516.gif)
 
 ## Развертывание в один клик:
