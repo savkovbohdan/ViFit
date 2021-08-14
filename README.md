@@ -1,4 +1,4 @@
-![](https://github.com/savkovbohdan/ViFit/blob/master/Header.jpg)
+![](https://github.com/savkovbohdan/ViFit/blob/master/Header.png)
 
 ![](RackMultipart20210814-4-ec3q2v_html_d3e67eee27c5af5e.png)
 
