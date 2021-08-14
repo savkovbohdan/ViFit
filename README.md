@@ -56,8 +56,8 @@
 
 
 - [Быстрый запуск:](#-быстрый-запуск-)
-    - [Развертывание в один клик](#-Развертывание-в-один-клик-)
-    - [Heroku](#other-one-click-deployment-options)
+    - [Развертывание в один клик](#развертывание-в-один-клик)
+    - [Heroku](#развертывание-aureole-на-heroku)
     - [Render](#other-deployment-methods)
     - [Другие методы развертывания](#other-deployment-methods)
 - [Архитектура](#architecture)
