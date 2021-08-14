@@ -1,6 +1,7 @@
 ![](https://github.com/savkovbohdan/ViFit/blob/master/Header.png)
 
-[![Latest release](https://img.shields.io/github/v/Art9Studio/Aureole)](https://github.com/Art9Studio/Aureole)
+![Lines of code](https://img.shields.io/tokei/lines/github/art9studio/aureole)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/art9studio/aureole)
 
 <a href="https://discord.gg/EjBQ3fKg"><img src="https://img.shields.io/badge/chat-discord-brightgreen.svg?logo=discord&style=flat"></a>
 <a href="https://twitter.com/aureolecloud"><img src="https://img.shields.io/badge/Follow-aureolecloud-blue.svg?style=flat&logo=twitter"></a>
